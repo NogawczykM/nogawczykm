@@ -88,6 +88,11 @@ textarea{min-height:120px;resize:vertical}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .tags span{border:1px solid var(--line);padding:2px 9px;border-radius:99px;font-size:.78rem;color:var(--mut)}
 .proj.empty{border-style:dashed;opacity:.75}
+.feat{grid-column:1/-1}
+.vid{width:100%;display:block;aspect-ratio:16/9;background:#000;border-radius:4px;margin-bottom:14px;border:1px solid var(--line)}
+.feat h4{font-size:1.3rem;font-family:"Barlow Condensed",sans-serif;margin-bottom:8px}
+.dl{display:inline-block;margin-top:16px;text-decoration:none;text-align:center;color:#000}
+[hidden]{display:none!important}
 @media(max-width:620px){
  .logo span{display:none}
  .menu button{padding:8px 9px;font-size:.88rem}
@@ -152,9 +157,9 @@ textarea{min-height:120px;resize:vertical}
 <dialog id="d-pr" aria-labelledby="t-pr"><div class="panel">
  <button class="x" data-close aria-label="Zavřít">✕</button>
  <h2 id="t-pr">Projekty</h2>
- <p>Tady budou velké projekty z robotiky a automatizace.</p>
- <div class="soon"><span>Coming Soon: první projekty se připravují</span></div>
- <h3>Ukázka struktury</h3>
+ <p id="pr-lead">Tady budou velké projekty z robotiky a automatizace.</p>
+ <div class="soon" id="soon"><span>Coming Soon: první projekty se připravují</span></div>
+ <h3 id="demo-h">Ukázka struktury</h3>
  <div class="grid" id="projects"></div>
 </div></dialog>
 
@@ -176,19 +181,27 @@ const SKILLS={"Robotika & řízení":[["FANUC ROBOGUIDE",90,"Pokročilý"],["Tea
 "Programování":[["Python",80,"Dobrý"],["C#",70,"Dobrý"],["C",65,"Střední"],["HTML",80,"Dobrý"],["CSS",75,"Dobrý"],["JavaScript",70,"Dobrý"]],
 "Sítě & IT":[["Cisco IOS",90,"Pokročilý"],["RouterOS",75,"Dobrý"],["Kyberbezpečnost",70,"Dobrý"]]};
 /* Projekty: sem přidávej objekty {title,desc,tags:["..."]}. Prázdné pole zobrazí ukázkové karty. */
-const PROJECTS=[];
+const PROJECTS=[{
+ title:"Kinder_6x: robotická buňka v ROBOGUIDE",
+ desc:'<p><b>O co jde:</b> Tohle je moje kompletní simulace v ROBOGUIDE, kde jsem oživil a naprogramoval robotickou buňku. Celek se točí kolem přesné manipulace a skládání dílů (známých jako „kinder“ vložky) do připravených pozic v matici.</p><p style="margin-top:10px">Sleduji u toho, aby měl robot plynulé dráhy, zbytečně neplýtval časem a celá sekvence šlapala přesně tak, jak má v reálné výrobě. Všechno je postavené na reálných základech programování FANUC robotů.</p>',
+ tags:["FANUC","ROBOGUIDE","Simulace","Manipulace s díly"],
+ video:"Kinder_6x.mp4",file:"Kinder_6x.rgx",fileLabel:"Stáhnout RGX buňku"
+}];
 document.getElementById('skills').innerHTML=Object.entries(SKILLS).map(([g,a])=>`<div class="card"><h4 style="color:#FFD100;margin-bottom:12px">${g}</h4>${a.map(s=>`<div class="sk"><div class="h"><span>${s[0]}</span><em>${s[2]}</em></div><div class="bar"><i style="--w:${s[1]}%"></i></div></div>`).join('')}</div>`).join('');
-const pc=(p,e)=>`<div class="card proj${e?' empty':''}"><div class="ph">Foto / video / simulace</div><h4>${p.title}</h4><p>${p.desc}</p><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div></div>`;
-document.getElementById('projects').innerHTML=PROJECTS.length?PROJECTS.map(p=>pc(p)).join(''):[["Robotická svařovací buňka","Návrh, simulace v ROBOGUIDE a programování.",["FANUC","ROBOGUIDE","Svařování"]],["Zabezpečená průmyslová síť","Segmentace sítě a ochrana řídicích zařízení.",["Cisco IOS","RouterOS","Kyberbezpečnost"]],["Vlastní mechatronický systém","Arduino, senzory a řízení akčních členů.",["Arduino","C","Mechatronika"]]].map(a=>pc({title:a[0],desc:a[1],tags:a[2]},1)).join('');
+const pc=(p,e)=>`<div class="card proj${e?' empty':''}${p.video?' feat':''}">${p.video?`<video class="vid" src="${p.video}" muted loop playsinline controls preload="metadata" aria-label="${p.title}"></video>`:'<div class="ph">Foto / video / simulace</div>'}<h4>${p.title}</h4>${p.desc[0]==='<'?p.desc:'<p>'+p.desc+'</p>'}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.file?`<a class="btn p dl" href="${p.file}" download>${p.fileLabel||'Stáhnout'}</a>`:''}</div>`;
+const demo=[["Robotická svařovací buňka","Návrh, simulace v ROBOGUIDE a programování.",["FANUC","ROBOGUIDE","Svařování"]],["Zabezpečená průmyslová síť","Segmentace sítě a ochrana řídicích zařízení.",["Cisco IOS","RouterOS","Kyberbezpečnost"]]].map(a=>pc({title:a[0],desc:a[1],tags:a[2]},1));
+// skutečné projekty + jedna karta "připravuje se"; bez projektů ukázkové karty
+document.getElementById('projects').innerHTML=PROJECTS.length?PROJECTS.map(p=>pc(p)).join('')+pc({title:"Další projekt",desc:"Připravuji, brzy tu přibude.",tags:["Coming Soon"]},1):demo.join('');
+if(PROJECTS.length){document.getElementById('soon').hidden=true;document.getElementById('demo-h').hidden=true;document.getElementById('pr-lead').textContent='Vybrané projekty z robotiky a automatizace.'}
 const b=new Date(2007,10,22),n=new Date();let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),10,22))a--;
 document.getElementById('age').textContent=a+' let';
 
 /* ---------- dialogy ---------- */
 const btns=[...document.querySelectorAll('.menu button')],home=btns[0];
 const mark=el=>btns.forEach(x=>x.classList.toggle('on',x===el));
-document.querySelectorAll('[data-open]').forEach(o=>o.onclick=()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());document.getElementById(o.dataset.open).showModal();mark(btns.find(x=>x.dataset.open===o.dataset.open))});
+document.querySelectorAll('[data-open]').forEach(o=>o.onclick=()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());const dl=document.getElementById(o.dataset.open);dl.showModal();dl.querySelectorAll('video').forEach(v=>v.play().catch(()=>{}));mark(btns.find(x=>x.dataset.open===o.dataset.open))});
 document.querySelectorAll('[data-home]').forEach(o=>o.onclick=()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());mark(home);scrollTo({top:0,behavior:'smooth'})});
-document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d)d.close()});d.addEventListener('close',()=>{if(!document.querySelector('dialog[open]'))mark(home)});d.querySelector('[data-close]').onclick=()=>d.close()});
+document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d)d.close()});d.addEventListener('close',()=>{d.querySelectorAll('video').forEach(v=>v.pause());if(!document.querySelector('dialog[open]'))mark(home)});d.querySelector('[data-close]').onclick=()=>d.close()});
 document.getElementById('f').onsubmit=async e=>{e.preventDefault();const f=e.target,ok=document.getElementById('ok'),bt=f.querySelector('button');bt.disabled=true;ok.textContent='Odesílám…';
  try{const res=await fetch('https://formsubmit.co/ajax/missa.n@post.cz',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:f.n.value,message:f.m.value,_subject:'Zpráva z portfolia od '+f.n.value,_captcha:'false'})});
   const j=await res.json();if(!res.ok||!(j.success===true||j.success==='true'))throw 0;ok.textContent='Zpráva odeslána, děkuji.';f.reset()}
