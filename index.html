@@ -9,9 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0c0d0f;--panel:#16181b;--line:#2b2e33;--yel:#FFD100;--tx:#f4f4f5;--mut:#9ca3af;--hz:repeating-linear-gradient(-45deg,#FFD100 0 10px,#0c0d0f 10px 20px)}
+:root{--gx:max(20px,min(5vw,160px));--bg:#0c0d0f;--panel:#16181b;--line:#2b2e33;--yel:#FFD100;--tx:#f4f4f5;--mut:#9ca3af;--hz:repeating-linear-gradient(-45deg,#FFD100 0 10px,#0c0d0f 10px 20px)}
 *{box-sizing:border-box;margin:0}
-html{color-scheme:dark}
+html{color-scheme:dark;font-size:clamp(16px,.55vw + 7.2px,26px)}
 body{font-family:Barlow,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
 body:has(dialog[open]){overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
@@ -20,7 +20,7 @@ h1,h2,h3,.logo{font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-s
 /* header */
 header{position:fixed;top:0;left:0;right:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:rgba(12,13,15,.94)}
 header::after{content:"";display:block;height:4px;background:var(--hz);opacity:.85}
-nav{max-width:1180px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left));height:62px;display:flex;align-items:center;justify-content:space-between}
+nav{margin:0 auto;padding:0 max(var(--gx),env(safe-area-inset-right,0px)) 0 max(var(--gx),env(safe-area-inset-left,0px));height:3.9rem;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:12px;font-size:1.35rem;font-weight:700;background:none;border:0}
 .logo i{font-style:normal;background:var(--yel);color:#000;padding:1px 8px;border-radius:3px}
 .menu{display:flex;gap:4px}
@@ -31,7 +31,7 @@ nav{max-width:1180px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-right)
 #hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(1100px 700px at 72% 62%,#212328,transparent),linear-gradient(#0c0d0f,#101114)}
 #hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(#000,transparent 85%);-webkit-mask-image:linear-gradient(#000,transparent 85%)}
 #arm{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(0)}
-.hc{position:relative;max-width:1180px;width:100%;margin:0 auto;padding:calc(110px + env(safe-area-inset-top,0px)) 20px 60px;pointer-events:none}
+.hc{position:relative;width:100%;margin:0 auto;padding:calc(6.9rem + env(safe-area-inset-top,0px)) max(var(--gx),env(safe-area-inset-right,0px)) 60px max(var(--gx),env(safe-area-inset-left,0px));pointer-events:none}
 #hero.stack .hc{padding-bottom:calc(var(--rh,300px) + 24px)}
 .hc>*{pointer-events:auto}
 .badge{display:inline-block;border:1px solid var(--yel);color:var(--yel);padding:4px 12px;border-radius:99px;font-size:.88rem;margin-bottom:18px}
@@ -43,11 +43,11 @@ h1{font-size:clamp(3rem,9vw,6.4rem);line-height:.95;font-weight:700;max-width:9c
 .btn.p{background:var(--yel);color:#000}
 .btn.p:hover{box-shadow:0 0 26px rgba(255,209,0,.55);transform:translateY(-2px)}
 .btn:not(.p):hover{background:rgba(255,209,0,.12)}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;max-width:500px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;max-width:31rem}
 .chips span{background:rgba(255,255,255,.06);border:1px solid var(--line);padding:6px 12px;border-radius:4px;font-size:.88rem;color:#d4d7dc}
 .chips b{color:var(--yel);font-weight:600}
 /* dialogs */
-dialog{width:min(940px,96vw);max-height:92vh;max-height:92dvh;padding:0;border:0;background:transparent;color:var(--tx);margin:auto;overflow:visible}
+dialog{width:min(58rem,96vw);max-height:92vh;max-height:92dvh;padding:0;border:0;background:transparent;color:var(--tx);margin:auto;overflow:visible}
 dialog::backdrop{background:rgba(5,6,7,.78);backdrop-filter:blur(6px)}
 dialog[open]{animation:pop .3s cubic-bezier(.2,.9,.3,1)}
 dialog[open]::backdrop{animation:fade .3s}
@@ -215,7 +215,7 @@ function size(){
  // pravý okraj textu: scéna s robotem nesmí zasahovat do textu
  const hl=hero.querySelector('.lead').getBoundingClientRect(),hch=hero.querySelector('.chips').getBoundingClientRect();
  const tr=Math.max(hl.right,hch.right)-r.left+24;
- const side=Math.min(W/1050,(H*.9-110)/380,(W-20-tr)/590,2);
+ const side=Math.min(W/1050,(H*.9-110)/380,(W-20-tr)/590,3.2);
  const stack=W<1100||side<.8;
  if(stack){
   sc=Math.min(W/640,1.3,innerHeight*.85/400);
@@ -336,7 +336,7 @@ function frame(ts,dt){
   for(let i=0;i<N;i++){const l=SL[i];if(l<=0)continue;if(pass===0?l<=.55:pass===1?(l>.55||l<=.25):l>.25)continue;c.moveTo(SX[i],SY[i]);c.lineTo(SX[i]-VX[i]*2,SY[i]-VY[i]*2)}c.stroke()}
  for(let i=0;i<M;i++){if(ML[i]<=0)continue;ML[i]-=.008*dt;MX[i]+=MVX[i]*dt;MY[i]+=MVY[i]*dt;MR[i]+=.25*sc*dt;c.fillStyle=`rgba(170,176,186,${.12*ML[i]})`;c.beginPath();c.arc(MX[i],MY[i],MR[i],0,7);c.fill()}
 }
-new ResizeObserver(size).observe(hero);size();
+let rq=0;new ResizeObserver(()=>{cancelAnimationFrame(rq);rq=requestAnimationFrame(size)}).observe(hero);size();
 if(!reduce){new IntersectionObserver(e=>run=e[0].isIntersecting).observe(hero);
  (function loop(ts){requestAnimationFrame(loop);
   if(!run||document.hidden||document.querySelector('dialog[open]')){last=0;return}
