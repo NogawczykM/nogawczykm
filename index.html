@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Michael Nogawczyk – Robotika a kyberbezpečnost</title>
 <meta name="description" content="Portfolio Michaela Nogawczyka, specialisty na průmyslovou robotiku FANUC a kyberbezpečnost.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,20 +18,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--yel);outline-offset:3px}
 h1,h2,h3,.logo{font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.01em}
 /* header */
-header{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(12,13,15,.94)}
+header{position:fixed;top:0;left:0;right:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:rgba(12,13,15,.94)}
 header::after{content:"";display:block;height:4px;background:var(--hz);opacity:.85}
-nav{max-width:1180px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between}
+nav{max-width:1180px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left));height:62px;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:12px;font-size:1.35rem;font-weight:700;background:none;border:0}
 .logo i{font-style:normal;background:var(--yel);color:#000;padding:1px 8px;border-radius:3px}
 .menu{display:flex;gap:4px}
-.menu button{background:none;border:0;padding:8px 14px;color:var(--mut);font-weight:500;border-bottom:2px solid transparent;transition:.2s}
+.menu button{background:none;border:0;min-height:44px;padding:8px 14px;color:var(--mut);font-weight:500;border-bottom:2px solid transparent;transition:.2s}
 .menu button:hover{color:var(--tx)}
 .menu button.on{color:var(--yel);border-color:var(--yel)}
 /* hero */
-#hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(1100px 700px at 72% 62%,#212328,transparent),linear-gradient(#0c0d0f,#101114)}
+#hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(1100px 700px at 72% 62%,#212328,transparent),linear-gradient(#0c0d0f,#101114)}
 #hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(#000,transparent 85%);-webkit-mask-image:linear-gradient(#000,transparent 85%)}
 #arm{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(0)}
-.hc{position:relative;max-width:1180px;width:100%;margin:0 auto;padding:110px 20px 60px;pointer-events:none}
+.hc{position:relative;max-width:1180px;width:100%;margin:0 auto;padding:calc(110px + env(safe-area-inset-top,0px)) 20px 60px;pointer-events:none}
+#hero.stack .hc{padding-bottom:calc(var(--rh,300px) + 24px)}
 .hc>*{pointer-events:auto}
 .badge{display:inline-block;border:1px solid var(--yel);color:var(--yel);padding:4px 12px;border-radius:99px;font-size:.88rem;margin-bottom:18px}
 h1{font-size:clamp(3rem,9vw,6.4rem);line-height:.95;font-weight:700;max-width:9ch}
@@ -42,17 +43,17 @@ h1{font-size:clamp(3rem,9vw,6.4rem);line-height:.95;font-weight:700;max-width:9c
 .btn.p{background:var(--yel);color:#000}
 .btn.p:hover{box-shadow:0 0 26px rgba(255,209,0,.55);transform:translateY(-2px)}
 .btn:not(.p):hover{background:rgba(255,209,0,.12)}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;max-width:500px}
 .chips span{background:rgba(255,255,255,.06);border:1px solid var(--line);padding:6px 12px;border-radius:4px;font-size:.88rem;color:#d4d7dc}
 .chips b{color:var(--yel);font-weight:600}
 /* dialogs */
-dialog{width:min(940px,94vw);max-height:90vh;padding:0;border:0;background:transparent;color:var(--tx);margin:auto;overflow:visible}
+dialog{width:min(940px,96vw);max-height:92vh;max-height:92dvh;padding:0;border:0;background:transparent;color:var(--tx);margin:auto;overflow:visible}
 dialog::backdrop{background:rgba(5,6,7,.78);backdrop-filter:blur(6px)}
 dialog[open]{animation:pop .3s cubic-bezier(.2,.9,.3,1)}
 dialog[open]::backdrop{animation:fade .3s}
 @keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}}
 @keyframes fade{from{opacity:0}}
-.panel{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--yel);border-radius:6px;max-height:90vh;overflow:auto;padding:30px 30px 34px;position:relative}
+.panel{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--yel);border-radius:6px;max-height:92vh;max-height:92dvh;overflow:auto;overscroll-behavior:contain;padding:30px 30px 34px;position:relative}
 .x{position:sticky;top:0;float:right;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#0c0d0f;font-size:1.2rem;transition:.2s}
 .x:hover{border-color:var(--yel);color:var(--yel)}
 .panel h2{font-size:2.3rem;margin-bottom:6px}
@@ -90,8 +91,17 @@ textarea{min-height:120px;resize:vertical}
 @media(max-width:620px){
  .logo span{display:none}
  .menu button{padding:8px 9px;font-size:.88rem}
- .hc{padding:96px 18px 44vh}
+ .hc{padding-left:18px;padding-right:18px}
  .panel{padding:22px 18px 28px}
+ .panel h2{font-size:2rem}
+}
+@media(max-width:400px){
+ nav{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
+ .menu{gap:0}
+ .menu button{padding:8px 6px;font-size:.8rem}
+ .badge{font-size:.8rem}
+ .btn{padding:11px 18px}
+ .panel{padding:20px 14px 24px}
 }
 @media(prefers-reduced-motion:reduce){*,::before,::after{animation:none!important;transition:none!important}}
 </style>
@@ -199,10 +209,21 @@ const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 const lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
 
 function size(){
- const r=hero.getBoundingClientRect();if(!r.width||!r.height)return;
- W=r.width;H=r.height;d=Math.min(devicePixelRatio||1,1.5);
+ hero.classList.remove('stack');
+ let r=hero.getBoundingClientRect();if(!r.width||!r.height)return;
+ W=r.width;H=r.height;
+ // pravý okraj textu: scéna s robotem nesmí zasahovat do textu
+ const hl=hero.querySelector('.lead').getBoundingClientRect(),hch=hero.querySelector('.chips').getBoundingClientRect();
+ const tr=Math.max(hl.right,hch.right)-r.left+24;
+ const side=Math.min(W/1050,(H*.9-110)/380,(W-20-tr)/590,2);
+ const stack=W<1100||side<.8;
+ if(stack){
+  sc=Math.min(W/640,1.3,innerHeight*.85/400);
+  hero.classList.add('stack');hero.style.setProperty('--rh',Math.round(420*sc+50)+'px');
+  H=hero.getBoundingClientRect().height;gy=H-34;bx=(W-590*sc)/2+390*sc;
+ }else{gy=H*.9;sc=side;bx=W-20-200*sc}
+ d=Math.max(1,Math.min(devicePixelRatio||1,1.5,Math.sqrt(4.5e6/(W*H))));
  cv.width=bg.width=Math.round(W*d);cv.height=bg.height=Math.round(H*d);
- const m=W<760;gy=m?H-34:H*.9;sc=m?W/640:Math.min(W/1050,(gy-110)/380);bx=m?W*.03+390*sc:W-20-200*sc;
  x0=bx-350*sc;x1=bx-120*sc;tbl=gy-62*sc;sy=tbl-8*sc;sh=[bx,gy-120*sc];L1=260*sc;L2=240*sc;L3=70*sc;
  drawStatic();if(reduce)frame(3500,1);
 }
