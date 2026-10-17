@@ -215,9 +215,12 @@ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const bg=document.createElement('canvas'),bc=bg.getContext('2d');
 const gl=document.createElement('canvas');gl.width=gl.height=128;
 {const g=gl.getContext('2d'),r=g.createRadialGradient(64,64,0,64,64,64);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.2,'rgba(255,225,120,.6)');r.addColorStop(.5,'rgba(255,170,30,.18)');r.addColorStop(1,'rgba(255,170,30,0)');g.fillStyle=r;g.fillRect(0,0,128,128)}
-let W=0,H=0,d=1,sc=1,bx,gy,x0,x1,tbl,sy,sh,L1,L2,L3,run=true,last=0,fc=0;
+let PG,W=0,H=0,d=1,sc=1,bx,gy,x0,x1,tbl,sy,sh,L1,L2,L3,run=true,last=0,fc=0;
 const N=220,SX=new Float32Array(N),SY=new Float32Array(N),VX=new Float32Array(N),VY=new Float32Array(N),SL=new Float32Array(N);let sn=0;
 const M=24,MX=new Float32Array(M),MY=new Float32Array(M),MVX=new Float32Array(M),MVY=new Float32Array(M),ML=new Float32Array(M),MR=new Float32Array(M);let mn=0;
+const CODE=["1: J P[1] 100% FINE","2: L P[2] 500mm/s FINE","3: Weld Start[1,1]","4: L P[3] 8mm/s FINE","5: Weld End[1,1]","6: L P[1] 1000mm/s CNT50","7: [End]"];
+const MONO='ui-monospace,Menlo,Consolas,"Courier New",monospace';
+function rr(x,y,w,h,q){c.beginPath();c.moveTo(x+q,y);c.arcTo(x+w,y,x+w,y+h,q);c.arcTo(x+w,y+h,x,y+h,q);c.arcTo(x,y+h,x,y,q);c.arcTo(x,y,x+w,y,q);c.closePath()}
 const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 const lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
 
@@ -228,16 +231,17 @@ function size(){
  // pravý okraj textu: scéna s robotem nesmí zasahovat do textu
  const hl=hero.querySelector('.lead').getBoundingClientRect(),hch=hero.querySelector('.chips').getBoundingClientRect();
  const tr=Math.max(hl.right,hch.right)-r.left+24;
- const side=Math.min(W/1050,(H*.9-110)/380,(W-20-tr)/590,3.2);
+ const side=Math.min(W/1050,(H*.9-110)/380,(W-20-tr)/635,3.2);
  const stack=W<1100||side<.8;
  if(stack){
-  sc=Math.min(W/640,1.3,innerHeight*.85/400);
+  sc=Math.min(W/680,1.3,innerHeight*.85/400);
   hero.classList.add('stack');hero.style.setProperty('--rh',Math.round(420*sc+50)+'px');
-  H=hero.getBoundingClientRect().height;gy=H-34;bx=(W-590*sc)/2+390*sc;
- }else{gy=H*.9;sc=side;bx=W-20-200*sc}
+  H=hero.getBoundingClientRect().height;gy=H-34;bx=(W-635*sc)/2+390*sc;
+ }else{gy=H*.9;sc=side;bx=W-20-245*sc}
  d=Math.max(1,Math.min(devicePixelRatio||1,1.5,Math.sqrt(4.5e6/(W*H))));
  cv.width=bg.width=Math.round(W*d);cv.height=bg.height=Math.round(H*d);
  x0=bx-350*sc;x1=bx-120*sc;tbl=gy-62*sc;sy=tbl-8*sc;sh=[bx,gy-120*sc];L1=260*sc;L2=240*sc;L3=70*sc;
+ PG={cx:bx+95*sc,pw:150*sc,py:gy-340*sc,ph:290*sc};PG.mx=PG.cx+PG.pw/2;PG.sx=PG.cx+18*sc;PG.sy=PG.py+54*sc;PG.sw=PG.pw-36*sc;PG.sh=104*sc;PG.l1=PG.mx-9*sc;PG.l2=PG.mx+4*sc;PG.ly=PG.py+32*sc;
  drawStatic();if(reduce)frame(3500,1);
 }
 /* ---------- statická vrstva (kreslí se jednou) ---------- */
@@ -251,10 +255,10 @@ function drawStatic(){
  c.stroke();
  c.fillStyle='#FFD100';c.fillRect(0,gy,W,2);
  // výstražný pruh kolem pracoviště
- {const xa=x0-90*sc,xb=bx+230*sc,y=gy+12*sc,h=9*sc;c.save();c.beginPath();c.rect(xa,y,xb-xa,h);c.clip();c.fillStyle='#FFD100';
+ {const xa=x0-90*sc,xb=bx+270*sc,y=gy+12*sc,h=9*sc;c.save();c.beginPath();c.rect(xa,y,xb-xa,h);c.clip();c.fillStyle='#FFD100';
   for(let x=xa-h;x<xb;x+=22*sc){c.beginPath();c.moveTo(x,y+h);c.lineTo(x+h,y);c.lineTo(x+h+11*sc,y);c.lineTo(x+11*sc,y+h);c.fill()}c.restore()}
  // stín pod robotem
- c.fillStyle='rgba(0,0,0,.45)';c.beginPath();c.ellipse(bx+60*sc,gy+4*sc,300*sc,10*sc,0,0,7);c.fill();
+ c.fillStyle='rgba(0,0,0,.45)';c.beginPath();c.ellipse(bx+90*sc,gy+4*sc,330*sc,10*sc,0,0,7);c.fill();
  // svařovací stůl s přípravkem
  c.fillStyle='#24272b';c.fillRect(x0-40*sc,tbl,x1-x0+80*sc,62*sc);
  c.fillStyle='#1a1c20';c.fillRect(x0-30*sc,tbl+10*sc,12*sc,52*sc);c.fillRect(x1+18*sc,tbl+10*sc,12*sc,52*sc);
@@ -263,14 +267,57 @@ function drawStatic(){
  c.fillStyle='#b7bdc5';c.fillRect(x0-20*sc,sy,half*2,2*sc);
  // upínky
  for(const x of [x0-14*sc,x1+14*sc]){c.fillStyle='#FFD100';c.fillRect(x-7*sc,sy-14*sc,14*sc,8*sc);c.fillStyle='#333';c.fillRect(x-2*sc,sy-6*sc,4*sc,6*sc)}
- // řídicí skříň
- {const cx=bx+95*sc,cw=105*sc,ch=230*sc,t2=gy-ch;
-  c.strokeStyle='#08090a';c.lineWidth=5*sc;c.beginPath();c.moveTo(cx,gy-30*sc);c.quadraticCurveTo(cx-30*sc,gy-4*sc,bx+50*sc,gy-14*sc);c.stroke();
-  c.fillStyle='#1b1d21';c.fillRect(cx,t2,cw,ch);c.strokeStyle='#33363c';c.lineWidth=2;c.strokeRect(cx,t2,cw,ch);
-  c.fillStyle='#FFD100';c.fillRect(cx,t2,cw,14*sc);
-  c.fillStyle='#050607';c.fillRect(cx+14*sc,t2+34*sc,cw-28*sc,62*sc);
-  c.fillStyle='#d92d20';c.beginPath();c.arc(cx+cw-30*sc,t2+122*sc,12*sc,0,7);c.fill();c.strokeStyle='#FFD100';c.lineWidth=2*sc;c.stroke();
-  c.fillStyle='#101215';for(let i=0;i<7;i++)c.fillRect(cx+14*sc,t2+150*sc+i*10*sc,cw-28*sc,4*sc)}
+ // teach pendant FANUC (iPendant) na stojanu
+ {const g=PG,q=sc;
+  // kabel, stojan
+  c.lineCap='round';c.strokeStyle='#08090a';c.lineWidth=6*q;c.beginPath();c.moveTo(g.mx+14*q,g.py+g.ph-2*q);c.quadraticCurveTo(g.cx-30*q,gy-2*q,bx+55*q,gy-14*q);c.stroke();
+  c.setLineDash([2.5*q,3*q]);c.strokeStyle='#4a4f57';c.lineWidth=5*q;c.stroke();c.setLineDash([]);
+  c.fillStyle='#14161a';c.fillRect(g.mx-6*q,g.py+g.ph-4*q,12*q,gy-g.py-g.ph+4*q);
+  c.fillStyle='#0a0b0d';c.fillRect(g.mx-28*q,gy-8*q,56*q,8*q);
+  c.fillStyle='#FFD100';c.fillRect(g.mx-34*q,g.py+g.ph-2*q,68*q,5*q);
+  // popruh vlevo
+  c.strokeStyle='#0d0e10';c.lineWidth=11*q;c.beginPath();c.moveTo(g.cx+4*q,g.py+g.ph*.36);c.quadraticCurveTo(g.cx-28*q,g.py+g.ph*.58,g.cx+10*q,g.py+g.ph*.8);c.stroke();
+  c.strokeStyle='#2a2c30';c.lineWidth=1.5*q;c.stroke();
+  // spodní výčnělek (enable spínač)
+  rr(g.cx+20*q,g.py+g.ph-38*q,84*q,40*q,18*q);c.fillStyle='#141518';c.fill();c.strokeStyle='#2a2c30';c.lineWidth=2*q;c.stroke();
+  // tělo: nejdřív obrys, potom výplň (sjednocený tvar s "ušima")
+  const sh2=[[g.cx+2*q,g.py,46*q,44*q,16*q],[g.cx+g.pw-48*q,g.py,46*q,44*q,16*q],[g.cx,g.py+14*q,g.pw,g.ph-14*q-24*q,22*q]];
+  c.strokeStyle='#4b4e54';c.lineWidth=4*q;sh2.forEach(a=>{rr(...a);c.stroke()});
+  c.fillStyle='#2b2d31';sh2.forEach(a=>{rr(...a);c.fill()});
+  // zámek režimu (vlevo)
+  c.fillStyle='#0b0c0e';c.strokeStyle='#5a5d63';c.lineWidth=2*q;c.beginPath();c.arc(g.cx+25*q,g.py+23*q,11*q,0,7);c.fill();c.stroke();
+  c.fillStyle='#2b2d31';c.fillRect(g.cx+25*q-1.2*q,g.py+23*q-6*q,2.4*q,12*q);
+  // nouzové tlačítko (vpravo)
+  c.fillStyle='#FFD100';c.beginPath();c.arc(g.cx+g.pw-25*q,g.py+22*q,17*q,0,7);c.fill();
+  c.fillStyle='#d92d20';c.beginPath();c.arc(g.cx+g.pw-25*q,g.py+22*q,12.5*q,0,7);c.fill();
+  c.fillStyle='rgba(255,255,255,.35)';c.beginPath();c.arc(g.cx+g.pw-29*q,g.py+18*q,4*q,0,7);c.fill();
+  // kontrolky
+  c.fillStyle='#1f5f2a';c.beginPath();c.arc(g.l1,g.ly,3*q,0,7);c.fill();c.fillStyle='#4a3f00';c.beginPath();c.arc(g.l2,g.ly,3*q,0,7);c.fill();
+  // displej s rámečkem
+  rr(g.cx+14*q,g.py+50*q,g.pw-28*q,112*q,6*q);c.fillStyle='#08090a';c.fill();c.strokeStyle='#3a3d42';c.lineWidth=1.5*q;c.stroke();
+  c.fillStyle='#e9edf0';c.fillRect(g.sx,g.sy,g.sw,g.sh);
+  c.fillStyle='#27467c';c.fillRect(g.sx,g.sy,g.sw,13*q);
+  c.textBaseline='alphabetic';c.fillStyle='#fff';c.font='700 '+7*q+'px '+MONO;c.fillText('KINDER_6X',g.sx+3*q,g.sy+9.5*q);
+  c.fillStyle='#14171b';c.font=7*q+'px '+MONO;CODE.forEach((t,i)=>c.fillText(t,g.sx+3*q,g.sy+13*q+i*11*q+8.3*q));
+  c.fillStyle='#c5ccd2';c.fillRect(g.sx,g.sy+g.sh-10*q,g.sw,10*q);c.fillStyle='#222';c.font=5.4*q+'px '+MONO;c.fillText('[TYPE] [INST] [EDCMD] >',g.sx+3*q,g.sy+g.sh-3*q);
+  // světlý panel s klávesnicí
+  const pyk=g.py+168*q;
+  rr(g.cx+10*q,pyk,g.pw-20*q,g.ph-168*q-26*q,8*q);c.fillStyle='#dcdfe2';c.fill();c.strokeStyle='#9aa0a6';c.lineWidth=1.5*q;c.stroke();
+  const kx0=g.cx+14*q,kw=(g.pw-28*q-15*q)/7,st=kw+2.5*q;
+  const key=(x,y,w,h,f,l,tc)=>{c.fillStyle=f;c.fillRect(x,y,w,h);c.strokeStyle='#8e949a';c.lineWidth=.8*q;c.strokeRect(x,y,w,h);if(l){c.fillStyle=tc||'#1b1d20';c.font='600 '+3.9*q+'px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(l,x+w/2,y+h/2+.3*q);c.textAlign='left';c.textBaseline='alphabetic'}};
+  const WK='#f1f3f4',BL='#2f6fd6',DK='#1b1d20';
+  ['PREV','F1','F2','F3','F4','F5','NEXT'].forEach((l,i)=>key(kx0+i*st,pyk+4*q,kw,8*q,WK,l));
+  ['SHIFT','MENU','SELECT','EDIT','DATA','FCTN','SHIFT'].forEach((l,i)=>key(kx0+i*st,pyk+15*q,kw,9*q,(i===0||i===6)?BL:WK,l,(i===0||i===6)?'#fff':0));
+  const y0=pyk+28*q,rh=11.2*q,kh=9*q;
+  const jog=['-X','+X','-Y','+Y','-Z','+Z','-J4','+J4','-J5','+J5','-J6','+J6'];
+  jog.forEach((l,i)=>key(kx0+(5+i%2)*st,y0+Math.floor(i/2)*rh,kw,kh,BL,l,'#fff'));
+  // levý blok: logo i, nav, číslice
+  c.fillStyle='#f4f5f6';c.strokeStyle='#222';c.lineWidth=1.2*q;c.beginPath();c.arc(kx0+kw+1.25*q,y0+kh/2,7*q,0,7);c.fill();c.stroke();
+  c.fillStyle='#111';c.font='italic 700 '+9*q+'px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('i',kx0+kw+1.25*q,y0+kh/2+.5*q);c.textAlign='left';c.textBaseline='alphabetic';
+  key(kx0+2*st,y0,kw,kh,WK,'STEP');key(kx0+3*st,y0,kw,kh,WK,'HOLD');key(kx0+4*st,y0,kw,kh,BL,'FWD','#fff');
+  ['\u2190','\u2191','\u2192'].forEach((l,i)=>key(kx0+i*st,y0+rh,kw,kh,BL,l,'#fff'));key(kx0+3*st,y0+rh,kw,kh,WK,'');key(kx0+4*st,y0+rh,kw,kh,BL,'BWD','#fff');
+  ['RESET','BACK','ITEM','ENTER'].forEach((l,i)=>key(kx0+i*st,y0+2*rh,kw,kh,WK,l));key(kx0+4*st,y0+2*rh,kw,kh,WK,'');
+  [['7','8','9'],['4','5','6'],['1','2','3','0']].forEach((row,ri)=>{for(let i=0;i<5;i++){const l=row[i];key(kx0+i*st,y0+(3+ri)*rh,kw,kh,l?DK:WK,l||'',l?'#fff':0)}})}
  // podstavec robota
  c.fillStyle='#0a0b0d';c.fillRect(bx-78*sc,gy-24*sc,156*sc,24*sc);
  c.fillStyle='#8b9199';for(const o of [-64,-34,34,64]){c.beginPath();c.arc(bx+o*sc,gy-12*sc,3*sc,0,7);c.fill()}
@@ -311,10 +358,13 @@ function frame(ts,dt){
  // svar
  c.lineCap='round';c.strokeStyle=`rgba(255,120,20,${fade*.35})`;c.lineWidth=9*sc;c.beginPath();c.moveTo(x0,sy);c.lineTo(weld?tx:x1,sy);c.stroke();
  c.strokeStyle=`rgba(255,205,100,${fade})`;c.lineWidth=3.5*sc;c.stroke();
- // obrazovka skříně
- {const cx=bx+95*sc,cw=105*sc,t2=gy-230*sc;
-  for(let i=0;i<4;i++){c.fillStyle=i?'#8b9199':'#FFD100';c.fillRect(cx+22*sc,t2+44*sc+i*12*sc,(cw-44*sc)*(.35+.6*Math.abs(Math.sin(t*1.3+i*1.7))),5*sc)}
-  c.fillStyle=Math.floor(t*2)%2?'#FFD100':'#4a3f00';c.beginPath();c.arc(cx+24*sc,t2+122*sc,5*sc,0,7);c.fill()}
+ // teach pendant: aktuální řádek programu
+ {const g=PG,q=sc,i=p<.03?1:p<.06?2:p<.75?3:p<.78?4:5,ry=g.sy+13*q+i*11*q;
+  c.fillStyle='#FFD100';c.fillRect(g.sx,ry,g.sw,11*q);
+  c.fillStyle='#14171b';c.font=7*q+'px '+MONO;c.textBaseline='alphabetic';c.fillText(CODE[i],g.sx+3*q,ry+8.3*q);
+  c.fillStyle='#27467c';c.fillRect(g.sx+g.sw-46*q,g.sy,46*q,13*q);c.fillStyle='#fff';c.font='700 '+7*q+'px '+MONO;c.textAlign='right';c.fillText('LINE '+(i+1)+'/7',g.sx+g.sw-3*q,g.sy+9.5*q);c.textAlign='left';
+  c.fillStyle=weld?'#22c55e':'#14532d';c.beginPath();c.arc(g.l1,g.ly,3*q,0,7);c.fill();
+  c.fillStyle=weld?'#4a3f00':'#FFD100';c.beginPath();c.arc(g.l2,g.ly,3*q,0,7);c.fill()}
  // IK
  const tipX=tx,tipY=sy-4*sc+(weld?Math.sin(t*40)*.8*sc:0);
  const wr=[tipX+L3*.35,tipY-L3*.94],dx=wr[0]-sh[0],dy=wr[1]-sh[1],dd=Math.max(Math.min(Math.hypot(dx,dy),L1+L2-2),Math.abs(L1-L2)+2);
