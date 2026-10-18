@@ -3,17 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Michael Nogawczyk – Robotika a kyberbezpečnost</title>
-<meta name="description" content="Portfolio Michaela Nogawczyka, specialisty na průmyslovou robotiku FANUC a kyberbezpečnost.">
+<title>Michael Nogawczyk – Můj svět je robotika</title>
+<meta name="theme-color" content="#0c0d0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23FFD100'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='700' font-size='17' text-anchor='middle' fill='%23000'%3EMN%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Portfolio Michaela Nogawczyka, studenta IT a nadšence do průmyslové robotiky FANUC.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{--gx:max(20px,min(5vw,160px));--bg:#0c0d0f;--panel:#16181b;--line:#2b2e33;--yel:#FFD100;--tx:#f4f4f5;--mut:#9ca3af;--hz:repeating-linear-gradient(-45deg,#FFD100 0 10px,#0c0d0f 10px 20px)}
 *{box-sizing:border-box;margin:0}
-html{color-scheme:dark;font-size:clamp(16px,.55vw + 7.2px,26px)}
+html{scrollbar-gutter:stable;color-scheme:dark;font-size:clamp(16px,.55vw + 7.2px,26px)}
 body{font-family:Barlow,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
-body:has(dialog[open]){overflow:hidden}
+html.lock{overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--yel);outline-offset:3px}
 h1,h2,h3,.logo{font-family:"Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.01em}
@@ -28,7 +30,7 @@ nav{margin:0 auto;padding:0 max(var(--gx),env(safe-area-inset-right,0px)) 0 max(
 .menu button:hover{color:var(--tx)}
 .menu button.on{color:var(--yel);border-color:var(--yel)}
 /* hero */
-#hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(1100px 700px at 72% 62%,#212328,transparent),linear-gradient(#0c0d0f,#101114)}
+#hero{contain:layout paint;position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(1100px 700px at 72% 62%,#212328,transparent),linear-gradient(#0c0d0f,#101114)}
 #hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(#000,transparent 85%);-webkit-mask-image:linear-gradient(#000,transparent 85%)}
 #arm{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(0)}
 .hc{position:relative;width:100%;margin:0 auto;padding:calc(6.9rem + env(safe-area-inset-top,0px)) max(var(--gx),env(safe-area-inset-right,0px)) 60px max(var(--gx),env(safe-area-inset-left,0px));pointer-events:none}
@@ -44,11 +46,11 @@ h1{font-size:clamp(3rem,9vw,6.4rem);line-height:.95;font-weight:700;max-width:9c
 .btn.p:hover{box-shadow:0 0 26px rgba(255,209,0,.55);transform:translateY(-2px)}
 .btn:not(.p):hover{background:rgba(255,209,0,.12)}
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;max-width:31rem}
-.chips span{background:rgba(255,255,255,.06);border:1px solid var(--line);padding:6px 12px;border-radius:4px;font-size:.88rem;color:#d4d7dc}
+.chips span{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid var(--line);border-left:3px solid var(--yel);padding:8px 14px;border-radius:3px;font-size:.9rem;color:#d4d7dc}
 .chips b{color:var(--yel);font-weight:600}
 /* dialogs */
 dialog{width:min(58rem,96vw);max-height:92vh;max-height:92dvh;padding:0;border:0;background:transparent;color:var(--tx);margin:auto;overflow:visible}
-dialog::backdrop{background:rgba(5,6,7,.78);backdrop-filter:blur(6px)}
+dialog::backdrop{background:rgba(5,6,7,.86)}
 dialog[open]{animation:pop .3s cubic-bezier(.2,.9,.3,1)}
 dialog[open]::backdrop{animation:fade .3s}
 @keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}}
@@ -60,7 +62,7 @@ dialog[open]::backdrop{animation:fade .3s}
 .panel h3{font-size:1.35rem;margin:28px 0 12px;color:var(--yel)}
 .panel p{color:#c4c8ce}
 .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.card{background:#0f1113;border:1px solid var(--line);border-radius:6px;padding:18px;transition:.2s}
+.card{background:#0f1113;border:1px solid var(--line);border-radius:6px;padding:18px;transition:transform .2s,border-color .2s,box-shadow .2s}
 .card:hover{border-color:var(--yel)}
 .card h4{font-size:1.05rem;font-weight:600;margin-bottom:4px}
 .card p{font-size:.93rem}
@@ -72,8 +74,8 @@ dialog[open]::backdrop{animation:fade .3s}
 .sk .h{display:flex;justify-content:space-between;font-size:.95rem}
 .sk em{font-style:normal;color:var(--mut);font-size:.82rem}
 .bar{height:6px;background:#26292e;margin-top:6px;border-radius:2px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--yel);transition:width 1s cubic-bezier(.2,.8,.2,1)}
-dialog[open] .bar i{width:var(--w)}
+.bar i{display:block;height:100%;width:100%;background:var(--yel);transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+dialog[open] .bar i{transform:scaleX(var(--s))}
 .facts{display:flex;gap:8px 22px;flex-wrap:wrap;margin:10px 0 0;color:var(--mut);font-size:.92rem}
 .facts b{color:var(--tx);font-weight:500}
 form{display:grid;gap:12px}
@@ -93,6 +95,37 @@ textarea{min-height:120px;resize:vertical}
 .feat h4{font-size:1.3rem;font-family:"Barlow Condensed",sans-serif;margin-bottom:8px}
 .dl{display:inline-block;margin-top:16px;text-decoration:none;text-align:center;color:#000}
 [hidden]{display:none!important}
+::selection{background:var(--yel);color:#000}
+.panel{scrollbar-width:thin;scrollbar-color:var(--yel) #1b1d21}
+.eyebrow{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;letter-spacing:.16em;color:var(--yel);margin-bottom:4px}
+.panel h3{display:flex;align-items:center;gap:12px}
+.panel h3::before{content:"";width:5px;height:1.05em;background:var(--yel)}
+h1::after{content:"";display:block;width:96px;height:6px;background:var(--yel);margin-top:20px}
+.btn.p{display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.btn.p::after{content:"\2192";transition:transform .2s}
+.btn.p:hover::after{transform:translateX(4px)}
+.dl.btn.p::after{content:"\2193"}
+.dl.btn.p:hover::after{transform:translateY(3px)}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 1px rgba(255,209,0,.18)}
+.menu button{position:relative}
+.menu button:not(.on):hover{color:var(--yel)}
+@keyframes up{from{opacity:0;transform:translateY(16px)}}
+.hc>*{animation:up .7s cubic-bezier(.2,.8,.2,1) backwards}
+.hc>:nth-child(2){animation-delay:.07s}.hc>:nth-child(3){animation-delay:.14s}.hc>:nth-child(4){animation-delay:.21s}.hc>:nth-child(5){animation-delay:.28s}.hc>:nth-child(6){animation-delay:.35s}
+dialog[open] .card{animation:up .45s cubic-bezier(.2,.8,.2,1) backwards}
+dialog[open] .card:nth-child(2){animation-delay:.06s}dialog[open] .card:nth-child(3){animation-delay:.12s}
+.sub,.btns{width:fit-content}
+.soc{display:grid;gap:14px}
+.soc-link{display:flex;align-items:center;gap:16px;text-decoration:none;color:inherit}
+.soc-link svg{color:var(--yel);flex:none}
+.soc-link h4{margin:0}
+.soc-link p{margin:0}
+.hit{position:absolute;z-index:3;padding:0;border:0;background:transparent;border-radius:3px;cursor:pointer;transition:background .15s,box-shadow .15s}
+.hit:hover{background:rgba(255,209,0,.22);box-shadow:0 0 0 2px var(--yel)}
+.hit:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hit.es{border-radius:50%}
+.hit.hint{animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,209,0,.75)}80%,100%{box-shadow:0 0 0 14px rgba(255,209,0,0)}}
 @media(max-width:620px){
  .logo span{display:none}
  .menu button{padding:8px 9px;font-size:.88rem}
@@ -128,16 +161,19 @@ textarea{min-height:120px;resize:vertical}
  <div class="hc">
   <span class="badge">Vítěz CzechSkills &amp; FanucSkills</span>
   <h1>Michael Nogawczyk</h1>
-  <p class="sub">Specialista na průmyslovou robotiku a kyberbezpečnost</p>
-  <p class="lead">Programuji roboty FANUC, navrhuji automatizované linky a zabezpečuji sítě, které je řídí. Spojuji hardware, kód a bezpečnost do jednoho funkčního celku.</p>
+  <p class="sub">Můj svět je robotika</p>
+  <p class="lead">Jsem student IT, kterého naprosto nadchla průmyslová robotika. Ve svém volném čase i ve škole věnuji nejvíce energie robotům FANUC a automatizaci. Robotika je pro mě obor, koníček a doufám, že brzy i každodenní práce.</p>
   <div class="btns"><button class="btn p" data-open="d-cv">Zobrazit životopis</button><button class="btn" data-open="d-ct">Kontaktovat</button></div>
   <div class="chips"><span><b>1. místo</b> CzechSkills</span><span><b>Talent</b> Moravskoslezského kraje</span><span><b>FANUC</b> ROBOGUIDE • KAREL</span></div>
  </div>
+ <button class="hit hint" id="b-sel" type="button" aria-expanded="false" aria-label="SELECT: otevřít seznam programů" title="SELECT: programy"></button>
+ <button class="hit hint es" id="b-es" type="button" aria-pressed="false" aria-label="Nouzové zastavení, E-STOP" title="E-STOP: zastavit / pustit robota"></button>
 </section>
 </main>
 
 <dialog id="d-cv" aria-labelledby="t-cv"><div class="panel">
  <button class="x" data-close aria-label="Zavřít">✕</button>
+ <div class="eyebrow">01 · PROFIL</div>
  <h2 id="t-cv">Životopis</h2>
  <p>Michael Nogawczyk, <span id="age"></span></p>
  <div class="facts"><span>Narozen <b>22. 11. 2007</b></span><span>Škola <b>Střední škola Jablunkov, p. o.</b></span><span>Obor <b>průmyslová robotika, IT a sítě</b></span></div>
@@ -156,6 +192,7 @@ textarea{min-height:120px;resize:vertical}
 
 <dialog id="d-pr" aria-labelledby="t-pr"><div class="panel">
  <button class="x" data-close aria-label="Zavřít">✕</button>
+ <div class="eyebrow">02 · PORTFOLIO</div>
  <h2 id="t-pr">Projekty</h2>
  <p id="pr-lead">Tady budou velké projekty z robotiky a automatizace.</p>
  <div class="soon" id="soon"><span>Coming Soon: první projekty se připravují</span></div>
@@ -165,14 +202,26 @@ textarea{min-height:120px;resize:vertical}
 
 <dialog id="d-ct" aria-labelledby="t-ct"><div class="panel">
  <button class="x" data-close aria-label="Zavřít">✕</button>
+ <div class="eyebrow">03 · SPOJENÍ</div>
  <h2 id="t-ct">Kontakt</h2>
- <p>Napište mi jméno a zprávu, přijde mi rovnou do schránky.</p>
- <form id="f" style="margin-top:20px;max-width:560px">
-  <label>Jméno<input name="n" required autocomplete="name"></label>
-  <label>Zpráva<textarea name="m" required></textarea></label>
-  <button class="btn p" type="submit">Odeslat zprávu</button>
-  <p id="ok" role="status"></p>
- </form>
+ <p>Napište mi jméno, e-mail a zprávu. Přijde mi rovnou do schránky. Najdete mě i na sítích.</p>
+ <div class="grid" style="margin-top:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start">
+  <form id="f">
+   <label>Jméno<input name="n" required autocomplete="name"></label>
+   <label>E-mail<input name="e" type="email" required autocomplete="email"></label>
+   <label>Zpráva<textarea name="m" required></textarea></label>
+   <button class="btn p" type="submit">Odeslat zprávu</button>
+   <p id="ok" role="status"></p>
+  </form>
+  <div class="soc">
+   <a class="card soc-link" href="https://www.instagram.com/michael_nogawczyk" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+    <span><h4>Instagram</h4><p>@michael_nogawczyk</p></span></a>
+   <a class="card soc-link" href="https://www.linkedin.com/search/results/people/?keywords=michael%20nogawczyk" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-6.5M12 13c0-1.7 1.2-2.6 2.6-2.6S17 11.3 17 13v4"/></svg>
+    <span><h4>LinkedIn</h4><p>Michael Nogawczyk</p></span></a>
+  </div>
+ </div>
 </div></dialog>
 
 <script>
@@ -187,7 +236,7 @@ const PROJECTS=[{
  tags:["FANUC","ROBOGUIDE","Simulace","Manipulace s díly"],
  video:"Kinder_6x.mp4",file:"Kinder_6x.rgx",fileLabel:"Stáhnout RGX buňku"
 }];
-document.getElementById('skills').innerHTML=Object.entries(SKILLS).map(([g,a])=>`<div class="card"><h4 style="color:#FFD100;margin-bottom:12px">${g}</h4>${a.map(s=>`<div class="sk"><div class="h"><span>${s[0]}</span><em>${s[2]}</em></div><div class="bar"><i style="--w:${s[1]}%"></i></div></div>`).join('')}</div>`).join('');
+document.getElementById('skills').innerHTML=Object.entries(SKILLS).map(([g,a])=>`<div class="card"><h4 style="color:#FFD100;margin-bottom:12px">${g}</h4>${a.map(s=>`<div class="sk"><div class="h"><span>${s[0]}</span><em>${s[2]}</em></div><div class="bar"><i style="--s:${s[1]/100}"></i></div></div>`).join('')}</div>`).join('');
 const pc=(p,e)=>`<div class="card proj${e?' empty':''}${p.video?' feat':''}">${p.video?`<video class="vid" src="${p.video}" muted loop playsinline controls preload="metadata" aria-label="${p.title}"></video>`:'<div class="ph">Foto / video / simulace</div>'}<h4>${p.title}</h4>${p.desc[0]==='<'?p.desc:'<p>'+p.desc+'</p>'}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.file?`<a class="btn p dl" href="${p.file}" download>${p.fileLabel||'Stáhnout'}</a>`:''}</div>`;
 const demo=[["Robotická svařovací buňka","Návrh, simulace v ROBOGUIDE a programování.",["FANUC","ROBOGUIDE","Svařování"]],["Zabezpečená průmyslová síť","Segmentace sítě a ochrana řídicích zařízení.",["Cisco IOS","RouterOS","Kyberbezpečnost"]]].map(a=>pc({title:a[0],desc:a[1],tags:a[2]},1));
 // skutečné projekty + jedna karta "připravuje se"; bez projektů ukázkové karty
@@ -199,13 +248,13 @@ document.getElementById('age').textContent=a+' let';
 /* ---------- dialogy ---------- */
 const btns=[...document.querySelectorAll('.menu button')],home=btns[0];
 const mark=el=>btns.forEach(x=>x.classList.toggle('on',x===el));
-document.querySelectorAll('[data-open]').forEach(o=>o.onclick=()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());const dl=document.getElementById(o.dataset.open);dl.showModal();dl.querySelectorAll('video').forEach(v=>v.play().catch(()=>{}));mark(btns.find(x=>x.dataset.open===o.dataset.open))});
+document.querySelectorAll('[data-open]').forEach(o=>o.onclick=()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());const dl=document.getElementById(o.dataset.open);dl.showModal();document.documentElement.classList.add('lock');dl.querySelectorAll('video').forEach(v=>v.play().catch(()=>{}));mark(btns.find(x=>x.dataset.open===o.dataset.open))});
 document.querySelectorAll('[data-home]').forEach(o=>o.onclick=()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());mark(home);scrollTo({top:0,behavior:'smooth'})});
-document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d)d.close()});d.addEventListener('close',()=>{d.querySelectorAll('video').forEach(v=>v.pause());if(!document.querySelector('dialog[open]'))mark(home)});d.querySelector('[data-close]').onclick=()=>d.close()});
+document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d)d.close()});d.addEventListener('close',()=>{d.querySelectorAll('video').forEach(v=>v.pause());document.documentElement.classList.toggle('lock',!!document.querySelector('dialog[open]'));if(!document.querySelector('dialog[open]'))mark(home)});d.querySelector('[data-close]').onclick=()=>d.close()});
 document.getElementById('f').onsubmit=async e=>{e.preventDefault();const f=e.target,ok=document.getElementById('ok'),bt=f.querySelector('button');bt.disabled=true;ok.textContent='Odesílám…';
- try{const res=await fetch('https://formsubmit.co/ajax/missa.n@post.cz',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:f.n.value,message:f.m.value,_subject:'Zpráva z portfolia od '+f.n.value,_captcha:'false'})});
+ try{const res=await fetch('https://formsubmit.co/ajax/missa.n@post.cz',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:f.n.value,email:f.e.value,message:f.m.value,_subject:'Zpráva z portfolia od '+f.n.value,_captcha:'false'})});
   const j=await res.json();if(!res.ok||!(j.success===true||j.success==='true'))throw 0;ok.textContent='Zpráva odeslána, děkuji.';f.reset()}
- catch(_){ok.textContent='Odeslání se nepovedlo, otevírám e-mail, zprávu odešlete tam.';location.href='mailto:missa.n@post.cz?subject='+encodeURIComponent('Zpráva z portfolia od '+f.n.value)+'&body='+encodeURIComponent(f.m.value+'\n\n'+f.n.value)}
+ catch(_){ok.textContent='Odeslání se nepovedlo, otevírám e-mail, zprávu odešlete tam.';location.href='mailto:missa.n@post.cz?subject='+encodeURIComponent('Zpráva z portfolia od '+f.n.value)+'&body='+encodeURIComponent(f.m.value+'\n\n'+f.n.value+' ('+f.e.value+')')}
  bt.disabled=false};
 
 /* ---------- animace: robotické rameno svařuje ---------- */
@@ -213,14 +262,32 @@ const hero=document.getElementById('hero'),cv=document.getElementById('arm');
 let c=cv.getContext('2d');
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const bg=document.createElement('canvas'),bc=bg.getContext('2d');
+const cellW=document.createElement('canvas'),cwx=cellW.getContext('2d'),cellP=document.createElement('canvas'),cpx=cellP.getContext('2d');
 const gl=document.createElement('canvas');gl.width=gl.height=128;
 {const g=gl.getContext('2d'),r=g.createRadialGradient(64,64,0,64,64,64);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.2,'rgba(255,225,120,.6)');r.addColorStop(.5,'rgba(255,170,30,.18)');r.addColorStop(1,'rgba(255,170,30,0)');g.fillStyle=r;g.fillRect(0,0,128,128)}
-let PG,W=0,H=0,d=1,sc=1,bx,gy,x0,x1,tbl,sy,sh,L1,L2,L3,run=true,last=0,fc=0;
+let PG,W=0,H=0,d=1,sc=1,bx,gy,x0,x1,tbl,sy,sh,L1,L2,L3,xA0,xA1,xB0,xB1,pickX,placeX,BH,BW,HOME,run=true,last=0,fc=0;
 const N=220,SX=new Float32Array(N),SY=new Float32Array(N),VX=new Float32Array(N),VY=new Float32Array(N),SL=new Float32Array(N);let sn=0;
 const M=24,MX=new Float32Array(M),MY=new Float32Array(M),MVX=new Float32Array(M),MVY=new Float32Array(M),ML=new Float32Array(M),MR=new Float32Array(M);let mn=0;
-const CODE=["1: J P[1] 100% FINE","2: L P[2] 500mm/s FINE","3: Weld Start[1,1]","4: L P[3] 8mm/s FINE","5: Weld End[1,1]","6: L P[1] 1000mm/s CNT50","7: [End]"];
+const PROGS=[
+ {n:'WELD_SEAM',c:'Svar',T:7,L:["1: J P[1] 100% FINE","2: L P[2] 500mm/s FINE","3: Weld Start[1,1]","4: L P[3] 8mm/s FINE","5: Weld End[1,1]","6: L P[1] 1000mm/s CNT50","7: [End]"]},
+ {n:'PAS_BOXY',c:'Pasy',T:9,L:["1: J P[1] 100% FINE","2: L P[2] 400mm/s FINE","3: RO[1]=ON","4: L P[1] 400mm/s FINE","5: L P[3] 600mm/s FINE","6: RO[1]=OFF","7: JMP LBL[1]"]}];
+let prog=0,menu=false,stopped=false,phase=reduce?.5:0,scrKey='',mode='run',modeT=0,nextP=0,fromX=0,fromY=0,wa=1,pa=0,tm=0,boxes=[],boxN=0,offA=0,offB=0,pp=0,curTip=[0,0];
+const scr=document.createElement('canvas'),sx2=scr.getContext('2d');
+const bSel=document.getElementById('b-sel'),bEs=document.getElementById('b-es');
+const rowEls=PROGS.map((q,i)=>{const b=document.createElement('button');b.type='button';b.className='hit';b.hidden=true;b.setAttribute('aria-label','Program '+q.n);b.title=q.n;b.onclick=()=>{selectProg(i);setMenu(false)};hero.appendChild(b);return b});
+let moved=false;
+const touched=()=>{if(!moved){moved=true;bSel.classList.remove('hint');bEs.classList.remove('hint')}};
+const redraw=()=>{if(reduce)frame(3500,1)};
+function setMenu(v){menu=v;bSel.setAttribute('aria-expanded',v);rowEls.forEach(b=>b.hidden=!v);redraw()}
+bSel.onclick=()=>{touched();setMenu(!menu)};
+bEs.onclick=()=>{touched();stopped=!stopped;bEs.setAttribute('aria-pressed',stopped);bEs.title=stopped?'E-STOP aktivní, klikni pro uvolnění':'E-STOP: zastavit robota';redraw()};
+function place(el,x,y,w,h,min){w=Math.max(w,min);h=Math.max(h,min);const st=el.style;st.left=(x-w/2)+'px';st.top=(y-h/2)+'px';st.width=w+'px';st.height=h+'px'}
+function layoutCtl(){const co=matchMedia('(pointer:coarse)').matches?32:0,g=PG;
+ place(bSel,g.sel[0]+g.sel[2]/2,g.sel[1]+g.sel[3]/2,g.sel[2],g.sel[3],co);
+ place(bEs,g.ex,g.ey,2*g.er,2*g.er,co?40:0);
+ rowEls.forEach((b,i)=>place(b,g.sx+g.sw/2,g.sy+13*sc+i*11*sc+5.5*sc,g.sw,11*sc,0))}
 const MONO='ui-monospace,Menlo,Consolas,"Courier New",monospace';
-function rr(x,y,w,h,q){c.beginPath();c.moveTo(x+q,y);c.arcTo(x+w,y,x+w,y+h,q);c.arcTo(x+w,y+h,x,y+h,q);c.arcTo(x,y+h,x,y,q);c.arcTo(x,y,x+w,y,q);c.closePath()}
+function rr(x,y,w,h,q,keep){if(!keep)c.beginPath();c.moveTo(x+q,y);c.arcTo(x+w,y,x+w,y+h,q);c.arcTo(x+w,y+h,x,y+h,q);c.arcTo(x,y+h,x,y,q);c.arcTo(x,y,x+w,y,q);c.closePath()}
 const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 const lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
 
@@ -231,20 +298,30 @@ function size(){
  // pravý okraj textu: scéna s robotem nesmí zasahovat do textu
  const hl=hero.querySelector('.lead').getBoundingClientRect(),hch=hero.querySelector('.chips').getBoundingClientRect();
  const tr=Math.max(hl.right,hch.right)-r.left+24;
- const side=Math.min(W/1050,(H*.9-110)/380,(W-20-tr)/635,3.2);
+ const side=Math.min(W/1050,(H*.9-130)/400,(W-20-tr)/655,3.2);
  const stack=W<1100||side<.8;
  if(stack){
-  sc=Math.min(W/680,1.3,innerHeight*.85/400);
+  sc=Math.min(W/700,1.3,innerHeight*.85/400);
   hero.classList.add('stack');hero.style.setProperty('--rh',Math.round(420*sc+50)+'px');
-  H=hero.getBoundingClientRect().height;gy=H-34;bx=(W-635*sc)/2+390*sc;
+  H=hero.getBoundingClientRect().height;gy=H-34;bx=(W-655*sc)/2+410*sc;
  }else{gy=H*.9;sc=side;bx=W-20-245*sc}
  d=Math.max(1,Math.min(devicePixelRatio||1,1.5,Math.sqrt(4.5e6/(W*H))));
- cv.width=bg.width=Math.round(W*d);cv.height=bg.height=Math.round(H*d);
+ cv.width=bg.width=cellW.width=cellP.width=Math.round(W*d);cv.height=bg.height=cellW.height=cellP.height=Math.round(H*d);
  x0=bx-350*sc;x1=bx-120*sc;tbl=gy-62*sc;sy=tbl-8*sc;sh=[bx,gy-120*sc];L1=260*sc;L2=240*sc;L3=70*sc;
- PG={cx:bx+95*sc,pw:150*sc,py:gy-340*sc,ph:290*sc};PG.mx=PG.cx+PG.pw/2;PG.sx=PG.cx+18*sc;PG.sy=PG.py+54*sc;PG.sw=PG.pw-36*sc;PG.sh=104*sc;PG.l1=PG.mx-9*sc;PG.l2=PG.mx+4*sc;PG.ly=PG.py+32*sc;
+ xA0=bx-405*sc;xA1=bx-275*sc;xB0=bx-215*sc;xB1=bx-85*sc;pickX=bx-301*sc;placeX=bx-189*sc;BH=36*sc;BW=44*sc;HOME=[bx-200*sc,gy-170*sc];
+ PG={cx:bx+95*sc,pw:150*sc,py:gy-340*sc,ph:290*sc};PG.mx=PG.cx+PG.pw/2;PG.sx=PG.cx+18*sc;PG.sy=PG.py+54*sc;PG.sw=PG.pw-36*sc;PG.sh=104*sc;PG.l1=PG.mx-14*sc;PG.l2=PG.mx;PG.l3=PG.mx+14*sc;PG.ly=PG.py+32*sc;{const kw0=(PG.pw-43*sc)/7,st0=kw0+2.5*sc;PG.sel=[PG.cx+14*sc+2*st0,PG.py+183*sc,kw0,9*sc]}PG.ex=PG.cx+PG.pw-25*sc;PG.ey=PG.py+22*sc;PG.er=17*sc;scr.width=Math.ceil(PG.sw*d);scr.height=Math.ceil(PG.sh*d);scrKey='';layoutCtl();
  drawStatic();if(reduce)frame(3500,1);
 }
 /* ---------- statická vrstva (kreslí se jednou) ---------- */
+function drawBelts(){
+ for(const [xs,xe] of [[xA0,xA1],[xB0,xB1]]){const len=xe-xs;
+  c.fillStyle='#1a1c20';c.fillRect(xs+10*sc,tbl+22*sc,10*sc,gy-tbl-22*sc);c.fillRect(xe-20*sc,tbl+22*sc,10*sc,gy-tbl-22*sc);
+  c.fillStyle='#0a0b0d';c.fillRect(xs+4*sc,gy-6*sc,22*sc,6*sc);c.fillRect(xe-26*sc,gy-6*sc,22*sc,6*sc);
+  c.fillStyle='#2a2d32';c.fillRect(xs-12*sc,tbl+16*sc,len+24*sc,8*sc);c.fillStyle='#FFD100';c.fillRect(xs-12*sc,tbl+16*sc,len+24*sc,2*sc);
+  rr(xs-12*sc,tbl,len+24*sc,17*sc,8.5*sc);c.fillStyle='#101113';c.fill();c.strokeStyle='#3a3e44';c.lineWidth=1.5*sc;c.stroke();
+  for(const x of [xs-3*sc,xe+3*sc]){c.fillStyle='#33363c';c.beginPath();c.arc(x,tbl+8.5*sc,7.5*sc,0,7);c.fill();c.fillStyle='#8b9199';c.beginPath();c.arc(x,tbl+8.5*sc,2.5*sc,0,7);c.fill()}
+  c.fillStyle='#1d1f23';c.fillRect(xs-3*sc,tbl,len+6*sc,4*sc)}
+ c.fillStyle='#FFD100';c.fillRect(xA1+6*sc,tbl-30*sc,5*sc,30*sc);c.fillStyle='#0a0b0d';c.fillRect(xA1+3*sc,tbl-38*sc,11*sc,10*sc);c.fillStyle='#ff3b2a';c.fillRect(xA1+6*sc,tbl-35*sc,5*sc,3*sc)}
 function drawStatic(){
  const s=c;c=bc;c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,W,H);
  // podlaha
@@ -259,60 +336,56 @@ function drawStatic(){
   for(let x=xa-h;x<xb;x+=22*sc){c.beginPath();c.moveTo(x,y+h);c.lineTo(x+h,y);c.lineTo(x+h+11*sc,y);c.lineTo(x+11*sc,y+h);c.fill()}c.restore()}
  // stín pod robotem
  c.fillStyle='rgba(0,0,0,.45)';c.beginPath();c.ellipse(bx+90*sc,gy+4*sc,330*sc,10*sc,0,0,7);c.fill();
- // svařovací stůl s přípravkem
- c.fillStyle='#24272b';c.fillRect(x0-40*sc,tbl,x1-x0+80*sc,62*sc);
- c.fillStyle='#1a1c20';c.fillRect(x0-30*sc,tbl+10*sc,12*sc,52*sc);c.fillRect(x1+18*sc,tbl+10*sc,12*sc,52*sc);
- c.fillStyle='#FFD100';c.fillRect(x0-40*sc,tbl,x1-x0+80*sc,3*sc);
- c.fillStyle='#8b9199';const half=(x1-x0+40*sc)/2;c.fillRect(x0-20*sc,sy,half-1,8*sc);c.fillRect(x0-20*sc+half+2,sy,half-1,8*sc);
- c.fillStyle='#b7bdc5';c.fillRect(x0-20*sc,sy,half*2,2*sc);
- // upínky
- for(const x of [x0-14*sc,x1+14*sc]){c.fillStyle='#FFD100';c.fillRect(x-7*sc,sy-14*sc,14*sc,8*sc);c.fillStyle='#333';c.fillRect(x-2*sc,sy-6*sc,4*sc,6*sc)}
  // teach pendant FANUC (iPendant) na stojanu
  {const g=PG,q=sc;
-  // kabel, stojan
+  c.fillStyle='rgba(0,0,0,.38)';c.beginPath();c.ellipse(g.mx,gy+3*q,46*q,5*q,0,0,7);c.fill();
   c.lineCap='round';c.strokeStyle='#08090a';c.lineWidth=6*q;c.beginPath();c.moveTo(g.mx+14*q,g.py+g.ph-2*q);c.quadraticCurveTo(g.cx-30*q,gy-2*q,bx+55*q,gy-14*q);c.stroke();
   c.setLineDash([2.5*q,3*q]);c.strokeStyle='#4a4f57';c.lineWidth=5*q;c.stroke();c.setLineDash([]);
   c.fillStyle='#14161a';c.fillRect(g.mx-6*q,g.py+g.ph-4*q,12*q,gy-g.py-g.ph+4*q);
   c.fillStyle='#0a0b0d';c.fillRect(g.mx-28*q,gy-8*q,56*q,8*q);
   c.fillStyle='#FFD100';c.fillRect(g.mx-34*q,g.py+g.ph-2*q,68*q,5*q);
-  // popruh vlevo
   c.strokeStyle='#0d0e10';c.lineWidth=11*q;c.beginPath();c.moveTo(g.cx+4*q,g.py+g.ph*.36);c.quadraticCurveTo(g.cx-28*q,g.py+g.ph*.58,g.cx+10*q,g.py+g.ph*.8);c.stroke();
-  c.strokeStyle='#2a2c30';c.lineWidth=1.5*q;c.stroke();
-  // spodní výčnělek (enable spínač)
+  c.setLineDash([3*q,3*q]);c.strokeStyle='#2c2f34';c.lineWidth=1.2*q;c.stroke();c.setLineDash([]);
   rr(g.cx+20*q,g.py+g.ph-38*q,84*q,40*q,18*q);c.fillStyle='#141518';c.fill();c.strokeStyle='#2a2c30';c.lineWidth=2*q;c.stroke();
-  // tělo: nejdřív obrys, potom výplň (sjednocený tvar s "ušima")
+  // tělo: obrys + gradientní výplň + lesk
   const sh2=[[g.cx+2*q,g.py,46*q,44*q,16*q],[g.cx+g.pw-48*q,g.py,46*q,44*q,16*q],[g.cx,g.py+14*q,g.pw,g.ph-14*q-24*q,22*q]];
-  c.strokeStyle='#4b4e54';c.lineWidth=4*q;sh2.forEach(a=>{rr(...a);c.stroke()});
-  c.fillStyle='#2b2d31';sh2.forEach(a=>{rr(...a);c.fill()});
-  // zámek režimu (vlevo)
-  c.fillStyle='#0b0c0e';c.strokeStyle='#5a5d63';c.lineWidth=2*q;c.beginPath();c.arc(g.cx+25*q,g.py+23*q,11*q,0,7);c.fill();c.stroke();
-  c.fillStyle='#2b2d31';c.fillRect(g.cx+25*q-1.2*q,g.py+23*q-6*q,2.4*q,12*q);
-  // nouzové tlačítko (vpravo)
-  c.fillStyle='#FFD100';c.beginPath();c.arc(g.cx+g.pw-25*q,g.py+22*q,17*q,0,7);c.fill();
-  c.fillStyle='#d92d20';c.beginPath();c.arc(g.cx+g.pw-25*q,g.py+22*q,12.5*q,0,7);c.fill();
-  c.fillStyle='rgba(255,255,255,.35)';c.beginPath();c.arc(g.cx+g.pw-29*q,g.py+18*q,4*q,0,7);c.fill();
-  // kontrolky
-  c.fillStyle='#1f5f2a';c.beginPath();c.arc(g.l1,g.ly,3*q,0,7);c.fill();c.fillStyle='#4a3f00';c.beginPath();c.arc(g.l2,g.ly,3*q,0,7);c.fill();
-  // displej s rámečkem
-  rr(g.cx+14*q,g.py+50*q,g.pw-28*q,112*q,6*q);c.fillStyle='#08090a';c.fill();c.strokeStyle='#3a3d42';c.lineWidth=1.5*q;c.stroke();
+  c.strokeStyle='#5a5e65';c.lineWidth=4*q;sh2.forEach(a=>{rr(...a);c.stroke()});
+  const bg2=c.createLinearGradient(g.cx,g.py,g.cx+g.pw*.5,g.py+g.ph);bg2.addColorStop(0,'#3e4147');bg2.addColorStop(.5,'#2a2c30');bg2.addColorStop(1,'#1a1c1f');
+  c.fillStyle=bg2;sh2.forEach(a=>{rr(...a);c.fill()});
+  c.save();c.beginPath();sh2.forEach(a=>rr(a[0],a[1],a[2],a[3],a[4],1));c.clip();
+  const gl2=c.createLinearGradient(0,g.py,0,g.py+g.ph*.5);gl2.addColorStop(0,'rgba(255,255,255,.16)');gl2.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=gl2;c.fillRect(g.cx-6*q,g.py,g.pw+12*q,g.ph*.5);
+  c.fillStyle='rgba(0,0,0,.25)';for(let k=0;k<7;k++){c.fillRect(g.cx+3*q,g.py+176*q+k*11*q,3*q,6*q);c.fillRect(g.cx+g.pw-6*q,g.py+176*q+k*11*q,3*q,6*q)}
+  c.restore();
+  // zámek režimu
+  const kr=c.createRadialGradient(g.cx+23*q,g.py+20*q,1,g.cx+25*q,g.py+23*q,13*q);kr.addColorStop(0,'#c7ccd2');kr.addColorStop(1,'#4d5158');
+  c.fillStyle=kr;c.beginPath();c.arc(g.cx+25*q,g.py+23*q,12.5*q,0,7);c.fill();c.fillStyle='#0b0c0e';c.beginPath();c.arc(g.cx+25*q,g.py+23*q,9*q,0,7);c.fill();
+  c.fillStyle='#2e3136';c.fillRect(g.cx+25*q-1.3*q,g.py+23*q-6.5*q,2.6*q,13*q);
+  // nouzové tlačítko
+  c.fillStyle='#FFD100';c.beginPath();c.arc(g.ex,g.ey,17*q,0,7);c.fill();
+  c.fillStyle='#15151a';c.beginPath();c.arc(g.ex,g.ey,14*q,0,7);c.fill();
+  const er=c.createRadialGradient(g.ex-4*q,g.ey-5*q,1,g.ex,g.ey,13*q);er.addColorStop(0,'#ff7a66');er.addColorStop(.55,'#d92d20');er.addColorStop(1,'#8a1710');
+  c.fillStyle=er;c.beginPath();c.arc(g.ex,g.ey,12.5*q,0,7);c.fill();
+  c.fillStyle='rgba(255,255,255,.4)';c.beginPath();c.ellipse(g.ex-4*q,g.ey-5*q,4.5*q,2.5*q,-.6,0,7);c.fill();
+  // kontrolky + šrouby
+  [[g.l1,'#1f5f2a'],[g.l2,'#4a3f00'],[g.l3,'#5a1a14']].forEach(l=>{c.fillStyle='#0a0b0d';c.beginPath();c.arc(l[0],g.ly,4.4*q,0,7);c.fill();c.fillStyle=l[1];c.beginPath();c.arc(l[0],g.ly,3*q,0,7);c.fill()});
+  [[9,56],[g.pw/q-9,56],[9,160],[g.pw/q-9,160]].forEach(a=>{c.fillStyle='#17181b';c.beginPath();c.arc(g.cx+a[0]*q,g.py+a[1]*q,2.3*q,0,7);c.fill();c.fillStyle='rgba(255,255,255,.25)';c.fillRect(g.cx+a[0]*q-1.6*q,g.py+a[1]*q-.3*q,3.2*q,.6*q)});
+  // rámeček displeje (obsah kreslí dynamická vrstva)
+  rr(g.cx+14*q,g.py+50*q,g.pw-28*q,112*q,6*q);c.fillStyle='#08090a';c.fill();c.strokeStyle='#44484e';c.lineWidth=1.5*q;c.stroke();
   c.fillStyle='#e9edf0';c.fillRect(g.sx,g.sy,g.sw,g.sh);
-  c.fillStyle='#27467c';c.fillRect(g.sx,g.sy,g.sw,13*q);
-  c.textBaseline='alphabetic';c.fillStyle='#fff';c.font='700 '+7*q+'px '+MONO;c.fillText('KINDER_6X',g.sx+3*q,g.sy+9.5*q);
-  c.fillStyle='#14171b';c.font=7*q+'px '+MONO;CODE.forEach((t,i)=>c.fillText(t,g.sx+3*q,g.sy+13*q+i*11*q+8.3*q));
-  c.fillStyle='#c5ccd2';c.fillRect(g.sx,g.sy+g.sh-10*q,g.sw,10*q);c.fillStyle='#222';c.font=5.4*q+'px '+MONO;c.fillText('[TYPE] [INST] [EDCMD] >',g.sx+3*q,g.sy+g.sh-3*q);
-  // světlý panel s klávesnicí
-  const pyk=g.py+168*q;
-  rr(g.cx+10*q,pyk,g.pw-20*q,g.ph-168*q-26*q,8*q);c.fillStyle='#dcdfe2';c.fill();c.strokeStyle='#9aa0a6';c.lineWidth=1.5*q;c.stroke();
+  // panel s klávesnicí
+  const pyk=g.py+168*q,ph2=g.ph-168*q-26*q;
+  rr(g.cx+10*q,pyk,g.pw-20*q,ph2,8*q);const pg=c.createLinearGradient(0,pyk,0,pyk+ph2);pg.addColorStop(0,'#e8eaec');pg.addColorStop(1,'#cdd1d5');c.fillStyle=pg;c.fill();c.strokeStyle='#8e949a';c.lineWidth=1.5*q;c.stroke();
   const kx0=g.cx+14*q,kw=(g.pw-28*q-15*q)/7,st=kw+2.5*q;
-  const key=(x,y,w,h,f,l,tc)=>{c.fillStyle=f;c.fillRect(x,y,w,h);c.strokeStyle='#8e949a';c.lineWidth=.8*q;c.strokeRect(x,y,w,h);if(l){c.fillStyle=tc||'#1b1d20';c.font='600 '+3.9*q+'px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(l,x+w/2,y+h/2+.3*q);c.textAlign='left';c.textBaseline='alphabetic'}};
-  const WK='#f1f3f4',BL='#2f6fd6',DK='#1b1d20';
+  const WK='#f4f5f6',BL='#2f6fd6',DK='#1c1e21';
+  const key=(x,y,w,h,f,l,tc)=>{rr(x,y,w,h,1.4*q);c.fillStyle=f;c.fill();
+   c.fillStyle=f===DK?'rgba(255,255,255,.14)':'rgba(255,255,255,.34)';rr(x+.7*q,y+.6*q,w-1.4*q,h*.42,1*q);c.fill();
+   c.strokeStyle=f===DK?'#000':'rgba(0,0,0,.38)';c.lineWidth=.9*q;rr(x,y,w,h,1.4*q);c.stroke();
+   if(l){c.fillStyle=tc||'#1b1d20';c.font='600 '+3.9*q+'px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(l,x+w/2,y+h/2+.4*q);c.textAlign='left';c.textBaseline='alphabetic'}};
   ['PREV','F1','F2','F3','F4','F5','NEXT'].forEach((l,i)=>key(kx0+i*st,pyk+4*q,kw,8*q,WK,l));
   ['SHIFT','MENU','SELECT','EDIT','DATA','FCTN','SHIFT'].forEach((l,i)=>key(kx0+i*st,pyk+15*q,kw,9*q,(i===0||i===6)?BL:WK,l,(i===0||i===6)?'#fff':0));
   const y0=pyk+28*q,rh=11.2*q,kh=9*q;
-  const jog=['-X','+X','-Y','+Y','-Z','+Z','-J4','+J4','-J5','+J5','-J6','+J6'];
-  jog.forEach((l,i)=>key(kx0+(5+i%2)*st,y0+Math.floor(i/2)*rh,kw,kh,BL,l,'#fff'));
-  // levý blok: logo i, nav, číslice
-  c.fillStyle='#f4f5f6';c.strokeStyle='#222';c.lineWidth=1.2*q;c.beginPath();c.arc(kx0+kw+1.25*q,y0+kh/2,7*q,0,7);c.fill();c.stroke();
+  ['-X','+X','-Y','+Y','-Z','+Z','-J4','+J4','-J5','+J5','-J6','+J6'].forEach((l,i)=>key(kx0+(5+i%2)*st,y0+Math.floor(i/2)*rh,kw,kh,BL,l,'#fff'));
+  c.fillStyle='#fafafa';c.strokeStyle='#222';c.lineWidth=1.2*q;c.beginPath();c.arc(kx0+kw+1.25*q,y0+kh/2,7*q,0,7);c.fill();c.stroke();
   c.fillStyle='#111';c.font='italic 700 '+9*q+'px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('i',kx0+kw+1.25*q,y0+kh/2+.5*q);c.textAlign='left';c.textBaseline='alphabetic';
   key(kx0+2*st,y0,kw,kh,WK,'STEP');key(kx0+3*st,y0,kw,kh,WK,'HOLD');key(kx0+4*st,y0,kw,kh,BL,'FWD','#fff');
   ['\u2190','\u2191','\u2192'].forEach((l,i)=>key(kx0+i*st,y0+rh,kw,kh,BL,l,'#fff'));key(kx0+3*st,y0+rh,kw,kh,WK,'');key(kx0+4*st,y0+rh,kw,kh,BL,'BWD','#fff');
@@ -327,6 +400,17 @@ function drawStatic(){
  c.fillStyle='rgba(0,0,0,.2)';c.beginPath();c.moveTo(bx+30*sc,gy-24*sc);c.lineTo(bx+24*sc,sh[1]);c.lineTo(bx+42*sc,sh[1]);c.lineTo(bx+60*sc,gy-24*sc);c.fill();
  c.fillStyle='#0a0b0d';c.fillRect(bx-48*sc,gy-70*sc,96*sc,10*sc);
  c.fillStyle='#202327';c.beginPath();c.arc(sh[0],sh[1],40*sc,0,7);c.fill();c.strokeStyle='#08090a';c.stroke();
+ c=cwx;c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,W,H);
+ // svařovací stůl s přípravkem
+ c.fillStyle='#24272b';c.fillRect(x0-40*sc,tbl,x1-x0+80*sc,62*sc);
+ c.fillStyle='#1a1c20';c.fillRect(x0-30*sc,tbl+10*sc,12*sc,52*sc);c.fillRect(x1+18*sc,tbl+10*sc,12*sc,52*sc);
+ c.fillStyle='#FFD100';c.fillRect(x0-40*sc,tbl,x1-x0+80*sc,3*sc);
+ c.fillStyle='#8b9199';const half=(x1-x0+40*sc)/2;c.fillRect(x0-20*sc,sy,half-1,8*sc);c.fillRect(x0-20*sc+half+2,sy,half-1,8*sc);
+ c.fillStyle='#b7bdc5';c.fillRect(x0-20*sc,sy,half*2,2*sc);
+ // upínky
+ for(const x of [x0-14*sc,x1+14*sc]){c.fillStyle='#FFD100';c.fillRect(x-7*sc,sy-14*sc,14*sc,8*sc);c.fillStyle='#333';c.fillRect(x-2*sc,sy-6*sc,4*sc,6*sc)}
+ c=cpx;c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,W,H);
+ drawBelts();
  c=s;
 }
 /* ---------- pomocné kreslení ---------- */
@@ -345,51 +429,133 @@ function joint(p,r,ang){
  c.fillStyle='#9aa0a8';for(let i=0;i<6;i++){const a=ang+i*1.0472;c.beginPath();c.arc(p[0]+Math.cos(a)*r*.46,p[1]+Math.sin(a)*r*.46,1.8*sc,0,7);c.fill()}
  c.fillStyle='#FFD100';c.beginPath();c.arc(p[0],p[1],r*.2,0,7);c.fill();
 }
+function drawScreen(i){
+ const q=sc,c0=c,w=PG.sw,h=PG.sh;c=sx2;c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,w,h);
+ c.fillStyle='#e9edf0';c.fillRect(0,0,w,h);
+ c.fillStyle=stopped?'#b3261e':'#27467c';c.fillRect(0,0,w,13*q);
+ c.textBaseline='alphabetic';c.textAlign='left';c.fillStyle='#fff';c.font='700 '+7*q+'px '+MONO;
+ c.fillText(stopped?'SRVO-001 E-stop':menu?'SELECT':PROGS[prog].n,3*q,9.5*q);
+ if(!menu&&!stopped){c.textAlign='right';c.fillText('LINE '+(i+1)+'/7',w-3*q,9.5*q);c.textAlign='left'}
+ c.font=7*q+'px '+MONO;
+ if(menu){
+  c.strokeStyle='#cfd5da';c.lineWidth=1;c.beginPath();for(let k=0;k<=7;k++){c.moveTo(0,13*q+k*11*q);c.lineTo(w,13*q+k*11*q)}c.stroke();
+  PROGS.forEach((p,k)=>{const y=13*q+k*11*q;if(k===prog){c.fillStyle='#FFD100';c.fillRect(0,y,w,11*q)}c.fillStyle='#14171b';c.fillText((k+1)+' '+p.n,3*q,y+8.3*q);c.fillStyle='#5b6470';c.textAlign='right';c.fillText(p.c,w-3*q,y+8.3*q);c.textAlign='left'});
+ }else PROGS[prog].L.forEach((t,k)=>{const y=13*q+k*11*q;if(k===i){c.fillStyle='#FFD100';c.fillRect(0,y,w,11*q)}c.fillStyle='#14171b';c.fillText(t,3*q,y+8.3*q)});
+ c.fillStyle='#c5ccd2';c.fillRect(0,h-10*q,w,10*q);c.fillStyle='#222';c.font=5.4*q+'px '+MONO;c.fillText(menu?'[CREATE] [DELETE] [MONI]':'[TYPE] [INST] [EDCMD] >',3*q,h-3*q);
+ c.fillStyle='rgba(255,255,255,.1)';c.beginPath();c.moveTo(w*.55,0);c.lineTo(w*.8,0);c.lineTo(w*.25,h);c.lineTo(0,h);c.closePath();c.fill();
+ c=c0}
 function cable(a,b,off,sag,t){const k=[(a[0]+b[0])/2,(a[1]+b[1])/2],a2=Math.atan2(b[1]-a[1],b[0]-a[0]);
  const cx=k[0]-Math.sin(a2)*(off+sag+Math.sin(t*2)*2*sc),cy=k[1]+Math.cos(a2)*(off+sag+Math.sin(t*2)*2*sc);
  c.lineCap='round';c.strokeStyle='#0a0a0b';c.lineWidth=8*sc;c.beginPath();c.moveTo(a[0],a[1]);c.quadraticCurveTo(cx,cy,b[0],b[1]);c.stroke();
  c.strokeStyle='#3b3f46';c.lineWidth=2*sc;c.stroke()}
 /* ---------- snímek ---------- */
+const ap=(x,tg,st)=>x<tg?Math.min(tg,x+st):Math.max(tg,x-st);
+function pathWeld(p){const weld=p<.75,u=weld?ease(p/.75):1-ease((p-.75)/.25);return{x:x0+u*(x1-x0),y:sy-4*sc,arc:weld,weld,i:p<.03?1:p<.06?2:p<.75?3:p<.78?4:5}}
+function pathPas(p){
+ const pk=tbl-BH,hv=pk-70*sc,A=[pickX,hv],B=[pickX,pk],C=[placeX,hv],D=[placeX,pk];
+ const m=(a,b,k,l)=>{const e=ease(Math.min(1,Math.max(0,k)));return[a[0]+(b[0]-a[0])*e,a[1]+(b[1]-a[1])*e-(l||0)*Math.sin(Math.PI*e)]};
+ let pt,i;
+ if(p<.1){pt=m(A,B,p/.1);i=1}else if(p<.16){pt=B;i=2}else if(p<.26){pt=m(B,A,(p-.16)/.1);i=3}
+ else if(p<.5){pt=m(A,C,(p-.26)/.24,28*sc);i=4}else if(p<.6){pt=m(C,D,(p-.5)/.1);i=4}
+ else if(p<.66){pt=D;i=5}else if(p<.76){pt=m(D,C,(p-.66)/.1);i=6}else{pt=m(C,A,(p-.76)/.24,28*sc);i=6}
+ return{x:pt[0],y:pt[1],i}}
+function spawnBox(){boxes.push({x:xA0-30*sc,st:'in',k:boxN++%2})}
+function drawBox(x,top,a,k){const w=BW,h=BH;c.globalAlpha=a;
+ c.fillStyle=k?'#c99a5b':'#b98a4e';c.fillRect(x-w/2,top,w,h);
+ c.fillStyle='rgba(255,255,255,.22)';c.fillRect(x-w/2,top,w,5*sc);c.fillStyle='rgba(0,0,0,.18)';c.fillRect(x-w/2,top+h-5*sc,w,5*sc);
+ c.fillStyle='#dcc291';c.fillRect(x-4*sc,top,8*sc,h);c.fillStyle='#f4f1ea';c.fillRect(x+7*sc,top+h*.45,11*sc,8*sc);
+ c.strokeStyle='#5e4424';c.lineWidth=1.5*sc;c.strokeRect(x-w/2,top,w,h);c.globalAlpha=1}
+function selectProg(i){
+ if(reduce){prog=nextP=i;mode='run';wa=i===0?1:0;pa=1-wa;tm=pa;phase=.5;boxes=[];if(i===1){spawnBox();boxes[0].st='held'}scrKey='';return redraw()}
+ if(mode==='run'||mode==='enter'){if(i===prog)return;fromX=curTip[0];fromY=curTip[1];nextP=i;mode='leave';modeT=0}
+ else if(mode==='leave')nextP=i;
+ else{prog=nextP=i}
+ scrKey='';redraw()}
 function frame(ts,dt){
  if(!W||!H||!isFinite(gy))return;
- const t=ts/1000,T=7,p=(t%T)/T,weld=p<.75,u=weld?ease(p/.75):1-ease((p-.75)/.25),fade=weld?1:1-(p-.75)/.25;fc++;
- c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,cv.width,cv.height);c.drawImage(bg,0,0);c.setTransform(d,0,0,d,0,0);
- const tx=x0+u*(x1-x0);
+ const t=ts/1000,go=!stopped,s1=dt*.016667;fc++;
+ // stavový automat: run -> leave (domů) -> swap (prolnutí buňky a nástroje) -> enter (do nového programu)
+ if(go){
+  if(mode==='run')phase+=s1/PROGS[prog].T;
+  else if(mode==='leave'){modeT+=s1/1.5;if(modeT>=1){modeT=0;mode='swap';prog=nextP;scrKey=''}}
+  else if(mode==='enter'){modeT+=s1/1.4;if(modeT>=1){modeT=0;mode='run';phase=0;pp=0;if(prog===1){boxes=[];spawnBox()}}}
+  const sp=s1/.9,tw=prog===0?0:1;wa=ap(wa,1-tw,sp);pa=ap(pa,tw,sp);tm=ap(tm,tw,sp);
+  if(mode==='swap'&&wa===1-tw&&pa===tw&&tm===tw){mode='enter';modeT=0;phase=0;pp=0;boxes=[]}
+ }
+ const p=phase%1,W0=pathWeld(p),cur=prog===0?W0:pathPas(p);
+ let tip;
+ if(mode==='run')tip=[cur.x,cur.y];
+ else if(mode==='leave'){const e=ease(Math.min(1,modeT));tip=[fromX+(HOME[0]-fromX)*e,fromY+(HOME[1]-fromY)*e-40*sc*Math.sin(Math.PI*e)]}
+ else if(mode==='swap')tip=[HOME[0],HOME[1]];
+ else{const e=ease(Math.min(1,modeT)),st=prog===0?pathWeld(0):pathPas(0);tip=[HOME[0]+(st.x-HOME[0])*e,HOME[1]+(st.y-HOME[1])*e-40*sc*Math.sin(Math.PI*e)]}
+ const arcOn=go&&mode==='run'&&prog===0&&cur.arc;
+ if(arcOn)tip[1]+=Math.sin(t*40)*.8*sc;
+ curTip=[tip[0],tip[1]];
+ const working=mode==='run'&&(prog===1||cur.arc),tipX=tip[0],tipY=tip[1];
+ // krabice: události a pohyb
+ if(go&&mode==='run'&&prog===1){
+  if(pp>p)spawnBox();
+  if(pp<.14&&p>=.14){const b=boxes.find(b=>b.st==='in'||b.st==='wait');if(b){b.st='held';b.x=pickX}}
+  if(pp<.63&&p>=.63){const b=boxes.find(b=>b.st==='held');if(b){b.st='B';b.x=placeX}}
+  pp=p}
+ if(go){const VA=(pickX-(xA0-30*sc))/(.07*PROGS[1].T),VB=55*sc;let mv=false;
+  for(const b of boxes){if(b.st==='in'){b.x+=VA*s1;if(b.x>=pickX){b.x=pickX;b.st='wait'}else mv=true}else if(b.st==='B')b.x+=VB*s1}
+  boxes=boxes.filter(b=>!(b.st==='B'&&b.x>=xB1-6*sc));
+  if(mv)offA+=VA*s1;offB+=VB*s1}
+ // vrstvy: společná + buňky (prolnutí)
+ c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,cv.width,cv.height);c.drawImage(bg,0,0);
+ if(wa>.004){c.globalAlpha=wa;c.drawImage(cellW,0,0)}
+ if(pa>.004){c.globalAlpha=pa;c.drawImage(cellP,0,0)}
+ c.globalAlpha=1;c.setTransform(d,0,0,d,0,0);
  // svar
- c.lineCap='round';c.strokeStyle=`rgba(255,120,20,${fade*.35})`;c.lineWidth=9*sc;c.beginPath();c.moveTo(x0,sy);c.lineTo(weld?tx:x1,sy);c.stroke();
- c.strokeStyle=`rgba(255,205,100,${fade})`;c.lineWidth=3.5*sc;c.stroke();
- // teach pendant: aktuální řádek programu
- {const g=PG,q=sc,i=p<.03?1:p<.06?2:p<.75?3:p<.78?4:5,ry=g.sy+13*q+i*11*q;
-  c.fillStyle='#FFD100';c.fillRect(g.sx,ry,g.sw,11*q);
-  c.fillStyle='#14171b';c.font=7*q+'px '+MONO;c.textBaseline='alphabetic';c.fillText(CODE[i],g.sx+3*q,ry+8.3*q);
-  c.fillStyle='#27467c';c.fillRect(g.sx+g.sw-46*q,g.sy,46*q,13*q);c.fillStyle='#fff';c.font='700 '+7*q+'px '+MONO;c.textAlign='right';c.fillText('LINE '+(i+1)+'/7',g.sx+g.sw-3*q,g.sy+9.5*q);c.textAlign='left';
-  c.fillStyle=weld?'#22c55e':'#14532d';c.beginPath();c.arc(g.l1,g.ly,3*q,0,7);c.fill();
-  c.fillStyle=weld?'#4a3f00':'#FFD100';c.beginPath();c.arc(g.l2,g.ly,3*q,0,7);c.fill()}
- // IK
- const tipX=tx,tipY=sy-4*sc+(weld?Math.sin(t*40)*.8*sc:0);
- const wr=[tipX+L3*.35,tipY-L3*.94],dx=wr[0]-sh[0],dy=wr[1]-sh[1],dd=Math.max(Math.min(Math.hypot(dx,dy),L1+L2-2),Math.abs(L1-L2)+2);
+ if(wa>.004){const fade=W0.weld?1:1-(p-.75)/.25;c.globalAlpha=wa;c.lineCap='round';c.strokeStyle=`rgba(255,120,20,${fade*.35})`;c.lineWidth=9*sc;c.beginPath();c.moveTo(x0,sy);c.lineTo(W0.weld?W0.x:x1,sy);c.stroke();
+  c.strokeStyle=`rgba(255,205,100,${fade})`;c.lineWidth=3.5*sc;c.stroke();c.globalAlpha=1}
+ // pásy a krabice
+ if(pa>.004){c.globalAlpha=pa;c.fillStyle='#3d4148';const g2=16*sc;
+  for(const [xs,xe,off] of [[xA0,xA1,offA],[xB0,xB1,offB]])for(let x=xs-3*sc+(off%g2);x<xe+3*sc;x+=g2)c.fillRect(x,tbl+.8*sc,2*sc,2.6*sc);
+  c.globalAlpha=1;
+  for(const b of boxes){if(b.st==='held')continue;drawBox(b.x,tbl-BH,pa*(b.st==='in'?Math.min(1,(b.x-(xA0-30*sc))/(45*sc)):b.st==='B'?Math.min(1,(xB1-6*sc-b.x)/(26*sc)):1),b.k)}
+  const hb=boxes.find(b=>b.st==='held');if(hb)drawBox(tipX,tipY,pa,hb.k)}
+ // teach pendant: obrazovka (cache), kontrolky, E-stop
+ {const g=PG,q=sc,i=mode==='run'?cur.i:0,k=(menu?'m'+prog:'p'+i+prog)+(stopped?'s':'');
+  if(k!==scrKey){drawScreen(i);scrKey=k}
+  c.drawImage(scr,g.sx,g.sy,g.sw,g.sh);
+  if(menu){c.strokeStyle='#FFD100';c.lineWidth=1.6*q;c.strokeRect(g.sel[0],g.sel[1],g.sel[2],g.sel[3])}
+  const bl=Math.sin(t*9)>0;
+  if(stopped){c.fillStyle=`rgba(255,50,35,${bl?.3:.12})`;c.beginPath();c.arc(g.ex,g.ey,25*q,0,7);c.fill();
+   c.fillStyle='#8a1710';c.beginPath();c.arc(g.ex,g.ey,12.5*q,0,7);c.fill();c.fillStyle='#b3261e';c.beginPath();c.arc(g.ex,g.ey+.8*q,10.5*q,0,7);c.fill()}
+  const lit=(x,col)=>{c.fillStyle=col;c.beginPath();c.arc(x,g.ly,3*q,0,7);c.fill()};
+  lit(g.l1,go&&working?'#22c55e':'#1f5f2a');lit(g.l2,go&&!working?'#FFD100':'#4a3f00');lit(g.l3,stopped&&bl?'#ff3b2a':'#5a1a14')}
+ // IK (nástroj se plynule mění: hořák nakloněný / přísavka svisle)
+ const wr=[tipX+L3*.35*(1-tm),tipY-L3*.94*(1-tm)-80*sc*tm],dx=wr[0]-sh[0],dy=wr[1]-sh[1],dd=Math.max(Math.min(Math.hypot(dx,dy),L1+L2-2),Math.abs(L1-L2)+2);
  const an=Math.atan2(dy,dx)+Math.acos((L1*L1+dd*dd-L2*L2)/(2*L1*dd));
  const el=[sh[0]+L1*Math.cos(an),sh[1]+L1*Math.sin(an)],an2=Math.atan2(wr[1]-el[1],wr[0]-el[0]);
- // horní rameno a předloktí
  tap(sh,el,28*sc,22*sc,'#FFD100');
  tap(sh,el,28*sc,22*sc,'#26292e',.04,.2,1.08);
  tap(el,wr,22*sc,13*sc,'#FFD100');
  tap(el,wr,22*sc,13*sc,'#26292e',.55,.82,1.1);
- // kabeláž
  {const n1=[-Math.sin(an),Math.cos(an)],n2=[-Math.sin(an2),Math.cos(an2)];
   const A=lerp(sh,el,.12),B=lerp(sh,el,.92),C=lerp(el,wr,.88);
   const A2=[A[0]+n1[0]*34*sc,A[1]+n1[1]*34*sc],B2=[B[0]+n1[0]*30*sc,B[1]+n1[1]*30*sc],C2=[C[0]+n2[0]*20*sc,C[1]+n2[1]*20*sc];
   cable(A2,B2,4*sc,10*sc,t);cable(B2,C2,2*sc,8*sc,t+1)}
- // zápěstí a hořák
- const tip=[tipX,tipY],m1=lerp(wr,tip,.38),m2=lerp(wr,tip,.74),m3=lerp(wr,tip,.93);
+ const tip2=[tipX,tipY],m1=lerp(wr,tip2,.38),m2=lerp(wr,tip2,.74),m3=lerp(wr,tip2,.93);
  tap(wr,m1,14*sc,11*sc,'#FFD100');
- c.lineCap='round';c.strokeStyle='#08090a';c.lineWidth=12*sc;c.beginPath();c.moveTo(m1[0],m1[1]);c.lineTo(m2[0],m2[1]);c.stroke();
- c.strokeStyle='#4a4f57';c.lineWidth=8*sc;c.stroke();
- c.strokeStyle='#c97b3a';c.lineWidth=6*sc;c.beginPath();c.moveTo(m2[0],m2[1]);c.lineTo(m3[0],m3[1]);c.stroke();
- c.strokeStyle='#e5e7eb';c.lineWidth=4*sc;c.beginPath();c.moveTo(m3[0],m3[1]);c.lineTo(tipX+1.5*sc,tipY-1*sc);c.stroke();
+ c.lineCap='round';
+ if(tm<.99){c.globalAlpha=1-tm;
+  c.strokeStyle='#08090a';c.lineWidth=12*sc;c.beginPath();c.moveTo(m1[0],m1[1]);c.lineTo(m2[0],m2[1]);c.stroke();
+  c.strokeStyle='#4a4f57';c.lineWidth=8*sc;c.stroke();
+  c.strokeStyle='#c97b3a';c.lineWidth=6*sc;c.beginPath();c.moveTo(m2[0],m2[1]);c.lineTo(m3[0],m3[1]);c.stroke();
+  c.strokeStyle='#e5e7eb';c.lineWidth=4*sc;c.beginPath();c.moveTo(m3[0],m3[1]);c.lineTo(tipX+1.5*sc,tipY-1*sc);c.stroke();c.globalAlpha=1}
+ if(tm>.01){c.globalAlpha=tm;
+  c.strokeStyle='#08090a';c.lineWidth=12*sc;c.beginPath();c.moveTo(m1[0],m1[1]);c.lineTo(tipX,tipY-18*sc);c.stroke();
+  c.strokeStyle='#4a4f57';c.lineWidth=8*sc;c.stroke();
+  c.fillStyle='#22252a';c.fillRect(tipX-23*sc,tipY-18*sc,46*sc,10*sc);c.fillStyle='#FFD100';c.fillRect(tipX-23*sc,tipY-18*sc,46*sc,2.5*sc);
+  c.strokeStyle='#08090a';c.lineWidth=1.2*sc;c.strokeRect(tipX-23*sc,tipY-18*sc,46*sc,10*sc);
+  for(const o of [-12,12]){c.fillStyle='#0b0b0c';c.beginPath();c.moveTo(tipX+(o-5)*sc,tipY-8*sc);c.lineTo(tipX+(o+5)*sc,tipY-8*sc);c.lineTo(tipX+(o+8)*sc,tipY);c.lineTo(tipX+(o-8)*sc,tipY);c.closePath();c.fill();c.strokeStyle='#5a5e65';c.lineWidth=1*sc;c.stroke()}
+  c.globalAlpha=1}
  joint(sh,32*sc,an);joint(el,25*sc,an2);joint(wr,15*sc,an2);
- // jiskry
- if(weld){
+ // jiskry a záře (jen při svařování)
+ if(arcOn){
   for(let k=Math.round(5*dt);k>0;k--){const i=sn++%N;SX[i]=tipX;SY[i]=tipY;VX[i]=(Math.random()-.5)*8*sc;VY[i]=-(Math.random()*6+1.5)*sc;SL[i]=1}
   if(fc%3===0){const i=mn++%M;MX[i]=tipX;MY[i]=tipY-10*sc;MVX[i]=(Math.random()-.2)*.5*sc;MVY[i]=-(.5+Math.random()*.6)*sc;ML[i]=1;MR[i]=8*sc}
   const f=.85+Math.random()*.3,r=95*sc*f;c.globalCompositeOperation='lighter';c.globalAlpha=.9;c.drawImage(gl,tipX-r,tipY-r,2*r,2*r);c.globalAlpha=.3;c.drawImage(gl,tipX-r*2.3,tipY-r*2.3,r*4.6,r*4.6);c.globalAlpha=1;c.globalCompositeOperation='source-over'}
@@ -399,7 +565,7 @@ function frame(ts,dt){
   for(let i=0;i<N;i++){const l=SL[i];if(l<=0)continue;if(pass===0?l<=.55:pass===1?(l>.55||l<=.25):l>.25)continue;c.moveTo(SX[i],SY[i]);c.lineTo(SX[i]-VX[i]*2,SY[i]-VY[i]*2)}c.stroke()}
  for(let i=0;i<M;i++){if(ML[i]<=0)continue;ML[i]-=.008*dt;MX[i]+=MVX[i]*dt;MY[i]+=MVY[i]*dt;MR[i]+=.25*sc*dt;c.fillStyle=`rgba(170,176,186,${.12*ML[i]})`;c.beginPath();c.arc(MX[i],MY[i],MR[i],0,7);c.fill()}
 }
-let rq=0;new ResizeObserver(()=>{cancelAnimationFrame(rq);rq=requestAnimationFrame(size)}).observe(hero);size();
+let rq=0,lw=0,lh=0;new ResizeObserver(e=>{const q=e[0].contentRect;if(Math.abs(q.width-lw)<.5&&Math.abs(q.height-lh)<.5)return;lw=q.width;lh=q.height;cancelAnimationFrame(rq);rq=requestAnimationFrame(size)}).observe(hero);size();
 if(!reduce){new IntersectionObserver(e=>run=e[0].isIntersecting).observe(hero);
  (function loop(ts){requestAnimationFrame(loop);
   if(!run||document.hidden||document.querySelector('dialog[open]')){last=0;return}
